@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "id": "boots_power",
+      "name": "Keskin Vurus Kramponu",
+      "category": "equipment",
+      "price": 900,
+      "consumable": false,
+      "description": "Sert ve isabetli vuruslar icin ozel burun yapisi. (Sut +3)",
+      "effects": { "stat": "shooting", "stat_delta": 3 }
+    },
+    {
+      "id": "boots_curve",
+      "name": "Falso Ustasi Kramponu",
+      "category": "equipment",
+      "price": 1150,
+      "consumable": false,
+      "description": "Topa ekstra kavrama veren kabartmali dis yuzey. (Falso +5)",
+      "effects": { "stat": "curve", "stat_delta": 5 }
+    },
+    {
+      "id": "boots_carbon",
+      "name": "Hafif Karbon Krampon",
+      "category": "equipment",
+      "price": 1400,
+      "consumable": false,
+      "description": "Tuy gibi hafif taban ile patlayici hizlanma. (Hiz +4, Calim +2)",
+      "effects": { "stat": "speed", "stat_delta": 4, "stat2": "dribbling", "stat2_delta": 2 }
+    },
+    {
+      "id": "physio_session",
+      "name": "Ozel Fizyoterapist Seansi",
+      "category": "service",
+      "price": 320,
+      "consumable": true,
+      "description": "Kaslarini aninda toparlar, Stamina'yi doldurur ve Hangover'i siler.",
+      "effects": { "full_recovery": true }
+    },
+    {
+      "id": "ortho_bed",
+      "name": "Ortopedik Sporcu Yatagi",
+      "category": "lifestyle",
+      "price": 1600,
+      "consumable": false,
+      "description": "Derin uyku kalitesi ile kalici Maksimum Stamina +10.",
+      "effects": { "max_stamina_delta": 10 }
+    },
+    {
+      "id": "home_arcade_tv",
+      "name": "Retro Konsol & TV Kosesi",
+      "category": "furniture",
+      "price": 1100,
+      "consumable": false,
+      "description": "Evinin icine yerlesir! Evde stres atip +8 Stamina kazanmani saglar.",
+      "effects": { "fan_rep_delta": 3 }
+    },
+    {
+      "id": "home_gym_corner",
+      "name": "Ev Ici Spor Kosesi",
+      "category": "furniture",
+      "price": 1450,
+      "consumable": false,
+      "description": "Evinin icine yerlesir! Evde ekstra kuvvet calismasi yapabilmeni saglar.",
+      "effects": { "stat": "physical", "stat_delta": 2 }
+    },
+    {
+      "id": "home_trophy_shelf",
+      "name": "Kupa & Madalya Dolabi",
+      "category": "furniture",
+      "price": 850,
+      "consumable": false,
+      "description": "Evinin icine yerlesir! Kazandigin basarilari sergiler (Taraftar +6, Medya +4).",
+      "effects": { "fan_rep_delta": 6, "media_rep_delta": 4 }
+    },
+    {
+      "id": "pr_agency",
+      "name": "Kisisel PR & Medya Danismani",
+      "category": "service",
+      "price": 1800,
+      "consumable": false,
+      "description": "Basin krizlerinin olumsuz etkisini yariya indirir (Medya +12).",
+      "effects": { "media_rep_delta": 12 }
+    },
+    {
+      "id": "cafe_share",
+      "name": "Gol Kafe %10 Ortaklik",
+      "category": "investment",
+      "price": 2400,
+      "consumable": false,
+      "description": "Kasabanin en islek kafesine ortak ol. Her hafta +250 TL pasif gelir!",
+      "effects": { "passive_income_delta": 250 }
+    },
+    {
+      "id": "shop_partnership",
+      "name": "Spor Magazasi %15 Ortaklik",
+      "category": "investment",
+      "price": 3200,
+      "consumable": false,
+      "description": "Krampon & forma satislarindan pay al. Her hafta +380 TL pasif gelir!",
+      "effects": { "passive_income_delta": 380 }
+    },
+    {
+      "id": "sport_coupe",
+      "name": "Klasik Spor Coupe",
+      "category": "lifestyle",
+      "price": 4500,
+      "consumable": false,
+      "description": "Kasaba sokaklarinda bakislari uzerine ceker. (Taraftar +15, Medya +10)",
+      "effects": { "fan_rep_delta": 15, "media_rep_delta": 10 }
+    }
+  ]
+}

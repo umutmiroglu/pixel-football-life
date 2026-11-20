@@ -1,0 +1,86 @@
+{
+  "crises": [
+    {
+      "id": "crisis_paparazzi",
+      "trigger_tag": "hangover",
+      "title": "MAGAZIN MANSETI: GECE YARISI YAKALANDIN!",
+      "description": "Bir magazin muhabiri dun gece kulup cikisinda fotografini cekip sosyal medyada paylasti. Taraftar forumlari kayniyor, kulup telefonu susmuyor!",
+      "choices": [
+        {
+          "label": "Sosyal medyadan kisa bir ozur yayinla ve antrenmana odaklan.",
+          "result_text": "Alcakgonullu aciklaman tepkilerin buyuk kismini dindirdi. Hoca da olgun tavrini takdir etti.",
+          "effects": { "fan_rep": -2, "media_rep": 3, "coach_trust": 2 }
+        },
+        {
+          "label": "'Ozel hayatim kimseyi ilgilendirmez!' diyerek sert cikis yap.",
+          "result_text": "Manşetler iki gun boyunca seni konustu! Bazi taraftarlar cesaretini sevdi ama medya bilendi.",
+          "effects": { "fan_rep": 4, "media_rep": -8, "coach_trust": -4 }
+        },
+        {
+          "label": "Hic yorum yapma, sessiz kalip sahada cevap ver.",
+          "result_text": "Firtina yavasca dindi ama gazete sutunlarinda elestiriler bir sure daha surdu.",
+          "effects": { "fan_rep": -4, "media_rep": -3 }
+        }
+      ]
+    },
+    {
+      "id": "crisis_fan_pressure",
+      "trigger_tag": "general",
+      "title": "TARAFTAR GRUBU TESIS KAPISINDA!",
+      "description": "Tribun liderlerinden birkac kisi sosyal medyada takim temposunu elestiren sert bir bildiri yayinladi. Muhabirler mikrofonu sana uzatti.",
+      "choices": [
+        {
+          "label": "Taraftar hakli, daha cok calisip onlari mutlu edecegiz.",
+          "result_text": "Tribunler bu samimi sozlerini ayakta alkisladi! Sosyal medyada destek mesajlari yagiyor.",
+          "effects": { "fan_rep": 7, "media_rep": 3, "team_trust": -1 }
+        },
+        {
+          "label": "Takim arkadaslarima toz kondurmam, biz bir butunuz!",
+          "result_text": "Soyunma odasinda herkes arkanda durdu! Kaptan gelip omzuna vurdu.",
+          "effects": { "fan_rep": 1, "team_trust": 6, "coach_trust": 3 }
+        },
+        {
+          "label": "Taktik konulara hoca karar verir, ben sahama bakarim.",
+          "result_text": "Profesyonel ve dengeli bir cevap oldu; kimseyi kirmadan konuyu kapattin.",
+          "effects": { "media_rep": 2, "coach_trust": 4 }
+        }
+      ]
+    },
+    {
+      "id": "crisis_sponsor_offer",
+      "trigger_tag": "general",
+      "title": "YEREL ENERJI ICECEGI REKLAM TEKLIFI",
+      "description": "Tartismali bir yerel enerji icecegi markasi, forma disi kisa bir sosyal medya videosu cekmen icin 650 TL teklif ediyor. Spor hekimleri urunu pek sevmiyor.",
+      "choices": [
+        {
+          "label": "Teklifi kabul et ve reklam videosunu cek.",
+          "result_text": "Cebin rahatladi ama bazi spor yazarlari 'para icin her seye evet diyor' diye elestirdi.",
+          "effects": { "cash": 650, "media_rep": -6, "fan_rep": -3 }
+        },
+        {
+          "label": "Sagliksiz urunlerin yuzu olmam diyerek reddet.",
+          "result_text": "Ilkeli durusun basinda ovguyle karsilandi, profesyonel imajin guclendi.",
+          "effects": { "media_rep": 6, "fan_rep": 4, "coach_trust": 2 }
+        }
+      ]
+    },
+    {
+      "id": "crisis_rival_provocation",
+      "trigger_tag": "general",
+      "title": "RAKIP YILDIZDAN SERT GONDERME!",
+      "description": "Siradaki rakibin kaptani basin toplantisinda 'Onlarin 10 numarasi sadece balon, sahada nefes aldirmayacagiz' dedi!",
+      "choices": [
+        {
+          "label": "'Pazar gunu sahada gorusuruz' diyerek buz gibi cevap ver.",
+          "result_text": "Mac oncesi atmosfer alevlendi! Taraftarlarin sana olan inanci tavan yapti.",
+          "effects": { "fan_rep": 6, "media_rep": 5, "coach_trust": 2 }
+        },
+        {
+          "label": "Saygili kal: 'Iyi bir takim, guzel bir mac olsun.'",
+          "result_text": "Centilmenligin spor gazetelerinde manset oldu.",
+          "effects": { "media_rep": 6, "coach_trust": 3 }
+        }
+      ]
+    }
+  ]
+}

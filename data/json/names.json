@@ -1,0 +1,60 @@
+{
+  "countries": {
+    "TR": {
+      "label": "Turkiye",
+      "male_first": ["Emre", "Kerem", "Mert", "Arda", "Can", "Burak", "Oguz", "Yusuf", "Kaan", "Enes", "Baris", "Umut", "Hakan", "Selim", "Tarik", "Volkan", "Berkay", "Cem", "Doruk", "Sinan"],
+      "female_first": ["Deniz", "Elif", "Zeynep", "Melis", "Selin", "Ece", "Irem", "Dilara", "Ceren", "Buse", "Asli", "Defne", "Gizem", "Hande", "Nehir", "Sude"],
+      "surnames": ["Yilmaz", "Kaya", "Demir", "Sahin", "Celik", "Yildiz", "Aydin", "Ozturk", "Arslan", "Dogan", "Kilic", "Aslan", "Cetin", "Kara", "Koc", "Kurt", "Ozkan", "Simsek", "Polat", "Acar"],
+      "club_prefixes": ["Kasaba", "Yildiz", "Anadolu", "Genc", "Demir", "Liman", "Vadi", "Bozkir"],
+      "club_suffixes": ["Spor", "FK", "Idman Yurdu", "Birlik", "Gucu", "SK"]
+    },
+    "EN": {
+      "label": "England",
+      "male_first": ["Jack", "Harry", "Oliver", "Callum", "Liam", "Mason", "Declan", "Jude", "Kieran", "Owen", "Luke", "Ethan", "Sam", "Ben", "Marcus"],
+      "female_first": ["Emily", "Chloe", "Sophie", "Hannah", "Grace", "Lucy", "Olivia", "Amelia", "Freya", "Mia", "Charlotte", "Ruby"],
+      "surnames": ["Smith", "Walker", "Wright", "Davies", "Evans", "Taylor", "Brown", "Wilson", "Green", "Hall", "Wood", "Clarke", "Ward", "Turner", "Bennett"],
+      "club_prefixes": ["Oak", "North", "River", "Iron", "Mill", "Harbor", "West", "Red"],
+      "club_suffixes": ["United", "FC", "Athletic", "Rovers", "Wanderers", "Town"]
+    },
+    "ES": {
+      "label": "Espana",
+      "male_first": ["Mateo", "Diego", "Pablo", "Lucas", "Alvaro", "Hugo", "Sergio", "Carlos", "Iker", "Dani", "Marcos", "Adrian", "Javier", "Raul"],
+      "female_first": ["Lucia", "Sofia", "Paula", "Elena", "Carmen", "Alba", "Marta", "Sara", "Claudia", "Nuria", "Valeria"],
+      "surnames": ["Garcia", "Martinez", "Lopez", "Sanchez", "Perez", "Gomez", "Ruiz", "Diaz", "Moreno", "Alvarez", "Romero", "Navarro", "Torres", "Vargas"],
+      "club_prefixes": ["Real", "Atletico", "Deportivo", "Sporting", "Rayo", "Union"],
+      "club_suffixes": ["CF", "Balompie", "Sol", "Norte", "Valle", "Mar"]
+    },
+    "IT": {
+      "label": "Italia",
+      "male_first": ["Luca", "Matteo", "Marco", "Lorenzo", "Andrea", "Davide", "Nicolo", "Federico", "Simone", "Giacomo", "Alessandro", "Riccardo"],
+      "female_first": ["Giulia", "Sofia", "Chiara", "Francesca", "Sara", "Martina", "Elena", "Alice", "Giorgia", "Beatrice"],
+      "surnames": ["Rossi", "Russo", "Ferrari", "Esposito", "Bianchi", "Romano", "Colombo", "Ricci", "Marino", "Greco", "Conti", "Gallo", "Costa"],
+      "club_prefixes": ["AC", "AS", "US", "Calcio", "Virtus", "Nuova"],
+      "club_suffixes": ["Nord", "Valle", "Stella", "Torre", "Lago", "Porto"]
+    },
+    "DE": {
+      "label": "Deutschland",
+      "male_first": ["Lukas", "Jonas", "Felix", "Leon", "Julian", "Maximilian", "Tim", "Niklas", "Florian", "Tobias", "Moritz", "Jan"],
+      "female_first": ["Hannah", "Lena", "Laura", "Anna", "Lea", "Julia", "Marie", "Sarah", "Lisa", "Katharina"],
+      "surnames": ["Muller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer", "Wagner", "Becker", "Hoffmann", "Schafer", "Koch", "Bauer", "Richter"],
+      "club_prefixes": ["SV", "VfB", "FC", "TSV", "Eintracht", "SpVgg"],
+      "club_suffixes": ["Wald", "Berg", "Tal", "Nord", "Rhein", "Stadt"]
+    },
+    "BR": {
+      "label": "Brasil",
+      "male_first": ["Gabriel", "Lucas", "Matheus", "Pedro", "Rafael", "Vinicius", "Bruno", "Felipe", "Thiago", "Caio", "Danilo", "Rodrigo"],
+      "female_first": ["Ana", "Beatriz", "Camila", "Larissa", "Mariana", "Julia", "Fernanda", "Gabriela", "Leticia", "Amanda"],
+      "surnames": ["Silva", "Santos", "Oliveira", "Souza", "Rodrigues", "Ferreira", "Alves", "Pereira", "Lima", "Gomes", "Costa", "Ribeiro"],
+      "club_prefixes": ["Atletico", "Esporte", "Clube", "Uniao", "Estrela", "Nova"],
+      "club_suffixes": ["Sul", "Verde", "Ouro", "Sol", "Praia", "FC"]
+    },
+    "FR": {
+      "label": "France",
+      "male_first": ["Lucas", "Hugo", "Theo", "Nathan", "Enzo", "Leo", "Antoine", "Julien", "Maxime", "Romain", "Clement", "Baptiste"],
+      "female_first": ["Camille", "Chloe", "Manon", "Lea", "Sarah", "Ines", "Clara", "Oceane", "Juliette", "Pauline"],
+      "surnames": ["Martin", "Bernard", "Dubois", "Thomas", "Robert", "Richard", "Petit", "Durand", "Leroy", "Moreau", "Simon", "Laurent"],
+      "club_prefixes": ["AS", "FC", "Olympique", "Stade", "Racing", "Union"],
+      "club_suffixes": ["Val", "Mont", "Sud", "Port", "Ville", "Loire"]
+    }
+  }
+}

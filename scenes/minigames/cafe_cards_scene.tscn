@@ -1,0 +1,189 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/minigames/cafe_cards_scene.gd" id="1_cards"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_felt"]
+bg_color = Color(0.08, 0.34, 0.17, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45, 0.28, 0.15, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+
+[node name="CafeCardsScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cards")
+
+[node name="WoodBg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24, 0.15, 0.09, 1)
+
+[node name="TableFelt" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_felt")
+
+[node name="VBox" type="VBoxContainer" parent="TableFelt"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TopRow" type="HBoxContainer" parent="TableFelt/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="OppPortraitBg" type="ColorRect" parent="TableFelt/VBox/TopRow"]
+custom_minimum_size = Vector2(30, 34)
+layout_mode = 2
+color = Color(0.06, 0.22, 0.11, 1)
+
+[node name="OppCharHolder" type="Node2D" parent="TableFelt/VBox/TopRow/OppPortraitBg"]
+unique_name_in_owner = true
+position = Vector2(15, 25)
+
+[node name="OppMeta" type="VBoxContainer" parent="TableFelt/VBox/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="HeadRow" type="HBoxContainer" parent="TableFelt/VBox/TopRow/OppMeta"]
+layout_mode = 2
+
+[node name="OppNameLabel" type="Label" parent="TableFelt/VBox/TopRow/OppMeta/HeadRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.92, 0.42, 1)
+theme_override_font_sizes/font_size = 7
+text = "Kasabali"
+
+[node name="TableCashLabel" type="Label" parent="TableFelt/VBox/TopRow/OppMeta/HeadRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "Nakit: 1200 TL"
+
+[node name="OppSpeechLabel" type="Label" parent="TableFelt/VBox/TopRow/OppMeta"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.96, 0.9, 1)
+theme_override_font_sizes/font_size = 5
+text = "\"Hadi 21 atalim!\""
+autowrap_mode = 2
+
+[node name="OppArea" type="HBoxContainer" parent="TableFelt/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="OppSumLabel" type="Label" parent="TableFelt/VBox/OppArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.65, 1)
+theme_override_font_sizes/font_size = 6
+text = "Rakip: --"
+
+[node name="OppCardsBox" type="HBoxContainer" parent="TableFelt/VBox/OppArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="PlayerArea" type="HBoxContainer" parent="TableFelt/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PlayerSumLabel" type="Label" parent="TableFelt/VBox/PlayerArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 1, 0.68, 1)
+theme_override_font_sizes/font_size = 6
+text = "Senin Elin: --"
+
+[node name="PlayerCardsBox" type="HBoxContainer" parent="TableFelt/VBox/PlayerArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="TableStatusLabel" type="Label" parent="TableFelt/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 6
+text = "50 TL bahisle 21 oyna veya cay ic!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionRow" type="HBoxContainer" parent="TableFelt/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TableDealBtn" type="Button" parent="TableFelt/VBox/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.52, 1, 0.62, 1)
+theme_override_font_sizes/font_size = 6
+text = "21 Oyna (50 TL)"
+
+[node name="TableHitBtn" type="Button" parent="TableFelt/VBox/ActionRow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.52, 1, 0.62, 1)
+theme_override_font_sizes/font_size = 6
+text = "Kart Cek"
+
+[node name="TableStandBtn" type="Button" parent="TableFelt/VBox/ActionRow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.38, 1)
+theme_override_font_sizes/font_size = 6
+text = "Kal (Pas)"
+
+[node name="TableTeaBtn" type="Button" parent="TableFelt/VBox/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "Cay Ic (35 TL)"
+
+[node name="TableLeaveBtn" type="Button" parent="TableFelt/VBox/ActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Masadan Kalk"

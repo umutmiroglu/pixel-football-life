@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/sleep_transition_overlay.gd" id="1_sleep"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_night"]
+bg_color = Color(0.05, 0.08, 0.14, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.78, 1, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+[node name="SleepTransitionOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sleep")
+
+[node name="SleepFadeRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.02, 0.05, 0)
+
+[node name="NightCard" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -78.0
+offset_right = 142.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_night")
+
+[node name="VBox" type="VBoxContainer" parent="NightCard"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="NightTitleLabel" type="Label" parent="NightCard/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.35, 1)
+theme_override_font_sizes/font_size = 8
+text = "GECE GECIYOR..."
+horizontal_alignment = 1
+
+[node name="NightMsgLabel" type="Label" parent="NightCard/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.94, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "Yeni gun..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LevelUpBox" type="VBoxContainer" parent="NightCard/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+
+[node name="NightPointsLabel" type="Label" parent="NightCard/VBox/LevelUpBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 1, 0.58, 1)
+theme_override_font_sizes/font_size = 6
+text = "Dagitilacak RPG Puani: 2"
+horizontal_alignment = 1
+
+[node name="NightStatsGrid" type="GridContainer" parent="NightCard/VBox/LevelUpBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 2
+columns = 2
+
+[node name="WakeUpBtn" type="Button" parent="NightCard/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 1, 0.68, 1)
+theme_override_font_sizes/font_size = 7
+text = "Yeni Gune Uyan (08:00)"

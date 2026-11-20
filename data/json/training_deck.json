@@ -1,0 +1,334 @@
+{
+  "cards": [
+    {
+      "id": "card_freekick_wall",
+      "category": "SERBEST VURUS",
+      "deck": "both",
+      "art": "card_freekick.png",
+      "title": "Ceza Yayinda Serbest Vurus",
+      "requires_hangover": false,
+      "description": "Kaleye 22 metre. Dort kisilik baraj kurulmus, kaleci uzak koseyi gozluyor. Takim arkadaslarin nefesini tutmus seni izliyor.",
+      "choices": [
+        {
+          "label": "Barajin ustunden 90'a falsolu bir vurus dene.",
+          "check_stat": "curve",
+          "check_threshold": 75,
+          "crit_text": "Top baraji santimle asip catalla bulustu! Hoca elini alnina goturup alkisladi.",
+          "normal_text": "Guzel kavis verdin, kaleci parmak ucuyla kornere celdi. Tecruben artti.",
+          "crit_effects": { "xp": 32, "stamina_delta": -10, "coach_trust_delta": 4 },
+          "normal_effects": { "xp": 14, "stamina_delta": -10, "coach_trust_delta": 1 }
+        },
+        {
+          "label": "Baraj ziplarken altindan yerden sert vur.",
+          "check_stat": "shooting",
+          "check_threshold": 74,
+          "crit_text": "Baraj havalandigi an yerden mermi gibi gonderdin! Top diregin dibinden aglarda.",
+          "normal_text": "Sert vurustun, barajin ayagina carpip sekti ama vurus zamanlaman oturdu.",
+          "crit_effects": { "xp": 30, "stamina_delta": -10, "team_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -10, "team_trust_delta": 1 }
+        },
+        {
+          "label": "Vuracak gibi yapip arka direkteki arkadasina pas cikar.",
+          "check_stat": "passing",
+          "check_threshold": 72,
+          "crit_text": "Tum savunma ters ayakta yakalandi! Arkadasin bos kaleye dokundu, hoca bu zekaya bayildi.",
+          "normal_text": "Pas yerini buldu, takim arkadasin kontrol edip pozisyonu surdurdu.",
+          "crit_effects": { "xp": 30, "stamina_delta": -8, "coach_trust_delta": 4, "team_trust_delta": 3 },
+          "normal_effects": { "xp": 13, "stamina_delta": -8, "team_trust_delta": 2 }
+        }
+      ]
+    },
+    {
+      "id": "card_gk_one_on_one",
+      "category": "BITIRICILIK",
+      "deck": "both",
+      "art": "card_gk_duel.png",
+      "title": "Kaleciyle Karsi Karsiya",
+      "requires_hangover": false,
+      "description": "Ara pasi onune dustu! Kaleci aciyi daraltmak icin hizla uzerine cikiyor. Saniyeler icinde karar vermelisin.",
+      "choices": [
+        {
+          "label": "Kalecinin ustunden ince bir asirtma birak.",
+          "check_stat": "curve",
+          "check_threshold": 76,
+          "crit_text": "Top kalecinin uzanan ellerinin ustunden suzulup aglara dustu! Saha kenari ayaga kalkti.",
+          "normal_text": "Asirtma az farkla ust direkten dondu ama sogukkanliligin dikkat cekti.",
+          "crit_effects": { "xp": 32, "stamina_delta": -9, "coach_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -9 }
+        },
+        {
+          "label": "Ayak iciyle uzak koseye yerden plase birak.",
+          "check_stat": "shooting",
+          "check_threshold": 73,
+          "crit_text": "Tereyagindan kil ceker gibi! Kaleci kipirdayamadi bile.",
+          "normal_text": "Temiz ve net bir bitiricilik denemesi, ayagin koseye alismaya basladi.",
+          "crit_effects": { "xp": 28, "stamina_delta": -9, "coach_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -9, "coach_trust_delta": 1 }
+        },
+        {
+          "label": "Kaleciyi calimlayip bos kaleye yuvarla.",
+          "check_stat": "dribbling",
+          "check_threshold": 76,
+          "crit_text": "Tek bilek hareketiyle kaleciyi cime oturttun! Takim arkadaslarin gulerek alkisliyor.",
+          "normal_text": "Kaleci ayagina yatti, son anda topu kurtardin. Dar alan refleksin keskinlesti.",
+          "crit_effects": { "xp": 32, "stamina_delta": -10, "team_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -10 }
+        }
+      ]
+    },
+    {
+      "id": "card_volley_cross",
+      "category": "SUT & BITIRICILIK",
+      "deck": "shooting",
+      "art": "card_freekick.png",
+      "title": "Kanattan Gelen Sert Orta",
+      "requires_hangover": false,
+      "description": "Sag kanattan ceza sahasina yuksek bir orta kesildi. Stoper arkanda nefesini hissettiriyor, top tam gogus hizana iniyor.",
+      "choices": [
+        {
+          "label": "Hic beklemeden gelisine sert bir vole vur!",
+          "check_stat": "shooting",
+          "check_threshold": 76,
+          "crit_text": "Inanilmaz bir zamanlama! Top aglari yirtacak gibi fileye yapisti.",
+          "normal_text": "Topu tam oturtamasan da kaleye yonelttin. Vole tecrubesi kazandin.",
+          "crit_effects": { "xp": 34, "stamina_delta": -11, "team_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -11 }
+        },
+        {
+          "label": "Gogsunle yumusatip donerek yerden vur.",
+          "check_stat": "dribbling",
+          "check_threshold": 73,
+          "crit_text": "Top ayagina yapisti, stoperi sirtinda birakip koseye biraktin!",
+          "normal_text": "Kontrol temizdi, dar acida sut cikarmayi basardin.",
+          "crit_effects": { "xp": 28, "stamina_delta": -9, "coach_trust_delta": 2 },
+          "normal_effects": { "xp": 13, "stamina_delta": -9 }
+        },
+        {
+          "label": "Kafayla penalti noktasina indir, sut acisi yarat.",
+          "check_stat": "positioning",
+          "check_threshold": 72,
+          "crit_text": "Tam santrfor indirisi! Geriden gelen arkadasin bos kaleye tamamladi.",
+          "normal_text": "Topu indirip oyunu canli tuttun.",
+          "crit_effects": { "xp": 26, "stamina_delta": -8, "coach_trust_delta": 3, "team_trust_delta": 2 },
+          "normal_effects": { "xp": 12, "stamina_delta": -8, "team_trust_delta": 1 }
+        }
+      ]
+    },
+    {
+      "id": "card_freekick_far",
+      "category": "SERBEST VURUS",
+      "deck": "shooting",
+      "art": "card_freekick.png",
+      "title": "30 Metreden Frikik Denemesi",
+      "requires_hangover": false,
+      "description": "Mesafe cok uzak ama ruzgar arkandan esiyor. Kaleci iki adim onde yakalanmis gibi gorunuyor.",
+      "choices": [
+        {
+          "label": "Olu yaprak teknigiyle sert ve dalgalanan bir sut cek.",
+          "check_stat": "shooting",
+          "check_threshold": 78,
+          "crit_text": "Top havada yon degistirip ust direkten iceri indi! Idman sahasinda ugultu koptu.",
+          "normal_text": "Top cok sert gitti, kaleci yumruklayarak uzaklastirdi.",
+          "crit_effects": { "xp": 35, "stamina_delta": -11 },
+          "normal_effects": { "xp": 15, "stamina_delta": -11 }
+        },
+        {
+          "label": "Uzak direge dis ayak falsolu orta-sut karisimi gonder.",
+          "check_stat": "curve",
+          "check_threshold": 74,
+          "crit_text": "Kimse dokunamadi ve top dogrudan uzak koseden aglara suzuldu!",
+          "normal_text": "Tehlikeli bir kavis oldu, savunma zorlukla uzaklastirdi.",
+          "crit_effects": { "xp": 30, "stamina_delta": -9, "coach_trust_delta": 2 },
+          "normal_effects": { "xp": 14, "stamina_delta": -9 }
+        }
+      ]
+    },
+    {
+      "id": "card_1v1_defender",
+      "category": "1v1 CALIM",
+      "deck": "team",
+      "art": "card_1v1.png",
+      "title": "Stoperle Bire Bir Kanal",
+      "requires_hangover": false,
+      "description": "Antrenman drilinde iri yari stoper onunu kapatti. Hoca kenardan kronometre tutuyor: 'On saniyen var, gec onu!'",
+      "choices": [
+        {
+          "label": "Omuz feykiyle sola gosterip saga keskin kir!",
+          "check_stat": "dribbling",
+          "check_threshold": 74,
+          "crit_text": "Stoper ters ayakta yere kaydi! Hizla bosluga daldin.",
+          "normal_text": "Dengesini bozdun ve kendine sut acisi actin.",
+          "crit_effects": { "xp": 30, "stamina_delta": -10, "coach_trust_delta": 3 },
+          "normal_effects": { "xp": 15, "stamina_delta": -10 }
+        },
+        {
+          "label": "Topu bosluga atip patlayici hizinla cizgiye in.",
+          "check_stat": "speed",
+          "check_threshold": 75,
+          "crit_text": "Ilk uc adimda farki actin, stoper sadece arkandan bakabildi!",
+          "normal_text": "Omuz omuza mucadelede ayakta kaldin ve cizgiye ulastin.",
+          "crit_effects": { "xp": 30, "stamina_delta": -12, "coach_trust_delta": 2 },
+          "normal_effects": { "xp": 15, "stamina_delta": -12 }
+        },
+        {
+          "label": "Vucudunla topu saklayip destek kosusu bekle.",
+          "check_stat": "physical",
+          "check_threshold": 68,
+          "crit_text": "Kaya gibi durdun! Rakip seni deviremedi, pasini rahatca dagittin.",
+          "normal_text": "Topu korumayi basardin ve geriye saglam oynadin.",
+          "crit_effects": { "xp": 28, "stamina_delta": -9, "team_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -9, "team_trust_delta": 1 }
+        }
+      ]
+    },
+    {
+      "id": "card_tactical_rondo",
+      "category": "TAKTIK RONDO",
+      "deck": "team",
+      "art": "card_rondo.png",
+      "title": "Yuksek Tempolu 5v2 Pas",
+      "requires_hangover": false,
+      "description": "Hoca bugun tek dokunus istiyor. Iki presci nefes aldirmiyor, ortada cok dar bir pencere acildi.",
+      "choices": [
+        {
+          "label": "Tek pasta iki prescinin arasindan dikine ara pasi at!",
+          "check_stat": "vision",
+          "check_threshold": 74,
+          "crit_text": "Igne deliginden gecirdin! Hoca dudugu calip tum takima bu pasi ornek gosterdi.",
+          "normal_text": "Riskli pas gecti, pas temposu yukseldi.",
+          "crit_effects": { "xp": 32, "stamina_delta": -10, "coach_trust_delta": 5 },
+          "normal_effects": { "xp": 15, "stamina_delta": -10, "coach_trust_delta": 2 }
+        },
+        {
+          "label": "Topsuz hareketlenip stoperin kor noktasina kosu yap.",
+          "check_stat": "positioning",
+          "check_threshold": 72,
+          "crit_text": "Surekli bos alan yarattin, hoca pozisyon zekana not dustu.",
+          "normal_text": "Iyi yer tuttun ve pas opsiyonu oldun.",
+          "crit_effects": { "xp": 28, "stamina_delta": -9, "coach_trust_delta": 3 },
+          "normal_effects": { "xp": 14, "stamina_delta": -9, "coach_trust_delta": 1 }
+        },
+        {
+          "label": "Presciyi uzerine cekip topuk pasiyla ters kanada ac.",
+          "check_stat": "dribbling",
+          "check_threshold": 75,
+          "crit_text": "Estetik bir topuk pasi! Arkadaslarin kahkahayla alkisliyor.",
+          "normal_text": "Topu kaybetmeden kurtardin ama hoca biraz daha sade oyun istiyor.",
+          "crit_effects": { "xp": 28, "stamina_delta": -9, "team_trust_delta": 3 },
+          "normal_effects": { "xp": 13, "stamina_delta": -9, "coach_trust_delta": -1 }
+        }
+      ]
+    },
+    {
+      "id": "card_weights_gym",
+      "category": "FIZIK & SALON",
+      "deck": "team",
+      "art": "card_weights.png",
+      "title": "Agirlik Salonu Programi",
+      "requires_hangover": false,
+      "description": "Kondisyoner agir halter setleri hazirladi. Kendini zorlayip yuksek kondisyon tecrubesi kazanabilir ya da enerjini koruyabilirsin.",
+      "choices": [
+        {
+          "label": "En agir setlere girip kendini sonuna kadar zorla.",
+          "normal_text": "Salondan kollarin titreyerek ciktin ama idman verimin tavan yapti.",
+          "normal_effects": { "xp": 26, "stamina_delta": -15, "coach_trust_delta": 3 }
+        },
+        {
+          "label": "Dengeli ve kontrollu bir kuvvet programi uygula.",
+          "normal_text": "Sakatlik riski olmadan temiz ve verimli bir calisma oldu.",
+          "normal_effects": { "xp": 18, "stamina_delta": -8, "coach_trust_delta": 2 }
+        },
+        {
+          "label": "Agirlik yerine hiz merdiveni ve esneme calis.",
+          "normal_text": "Cevikligini ve adim frekansini diri tuttun.",
+          "normal_effects": { "xp": 16, "stamina_delta": -7 }
+        }
+      ]
+    },
+    {
+      "id": "card_sprint_ladder",
+      "category": "KONDISYON",
+      "deck": "team",
+      "art": "card_sprint.png",
+      "title": "Yokus ve Sprint Tekrarlari",
+      "requires_hangover": false,
+      "description": "Idmanin en zorlu kismi: 40 metrelik tekrarli sprintler. Cigerlerin yanmaya basladi bile.",
+      "choices": [
+        {
+          "label": "Son seti bile grubun en onunde bitir!",
+          "check_stat": "stamina",
+          "check_threshold": 72,
+          "crit_text": "Grubu lider bitirdin! Kondisyoner ve hoca azmine hayran kaldi.",
+          "normal_text": "Nefes nefese kaldin ama bitis cizgisini guclu gectin.",
+          "crit_effects": { "xp": 32, "stamina_delta": -13, "coach_trust_delta": 4 },
+          "normal_effects": { "xp": 18, "stamina_delta": -13, "coach_trust_delta": 2 }
+        },
+        {
+          "label": "Kendi nefes ritminde, dengeli tempo tuttur.",
+          "normal_text": "Kendini hirpalamadan dayaniklilik kazandin.",
+          "normal_effects": { "xp": 15, "stamina_delta": -7, "coach_trust_delta": 1 }
+        },
+        {
+          "label": "Sondan giderek bacaklarini hafta sonu macina sakla.",
+          "normal_text": "Enerjini korudun ama hoca biraz kaslarini catti.",
+          "normal_effects": { "xp": 6, "stamina_delta": 4, "coach_trust_delta": -2 }
+        }
+      ]
+    },
+    {
+      "id": "card_scrimmage_final",
+      "category": "CIFT KALE MAC",
+      "deck": "team",
+      "art": "card_scrimmage.png",
+      "title": "Cift Kale Son Pozisyon",
+      "requires_hangover": false,
+      "description": "As takim ile yedekler arasindaki cift kale mac 1-1! Son hucumda top sende, hem sut acin hem de bostaki forvet var.",
+      "choices": [
+        {
+          "label": "Sorumlulugu al ve yayin disindan kaleye gonder!",
+          "check_stat": "shooting",
+          "check_threshold": 75,
+          "crit_text": "GALIBIYET GOLU! Tum as takim uzerine atladi!",
+          "normal_text": "Sutun kaleciden dondu ama ozguvenin yerinde.",
+          "crit_effects": { "xp": 34, "stamina_delta": -10, "coach_trust_delta": 3, "team_trust_delta": 2 },
+          "normal_effects": { "xp": 16, "stamina_delta": -10 }
+        },
+        {
+          "label": "Bostaki forvete ince bir ara pasi birak.",
+          "check_stat": "passing",
+          "check_threshold": 73,
+          "crit_text": "Harika asist! Forvet arkadasin golu atip parmagiyla seni isaret etti.",
+          "normal_text": "Pasi zamaninda cikardin, hucumu olgunlastirdin.",
+          "crit_effects": { "xp": 30, "stamina_delta": -9, "coach_trust_delta": 3, "team_trust_delta": 4 },
+          "normal_effects": { "xp": 15, "stamina_delta": -9, "team_trust_delta": 2 }
+        }
+      ]
+    },
+    {
+      "id": "card_hangover_crisis",
+      "category": "HANGOVER KRIZI",
+      "deck": "team",
+      "art": "card_hangover.png",
+      "title": "Aksamdan Kalma Idman Krizi!",
+      "requires_hangover": true,
+      "description": "Basin catliyor, gunes gozunu aliyor. Hoca isinmada gozlerini kisip sana yaklasti: 'Rengin bembeyaz evlat, bir sorun mu var?'",
+      "choices": [
+        {
+          "label": "Disini sik ve hic belli etmeden tam tempo kos!",
+          "normal_text": "Nefesin kesildi, bacaklarin kursun gibi ama hocaya renk vermedin.",
+          "normal_effects": { "xp": 16, "stamina_delta": -18, "coach_trust_delta": 1 }
+        },
+        {
+          "label": "Hafif mide usutmesi bahanesiyle kenarda tempolu yuru.",
+          "normal_text": "Hoca pek inanmasa da sesini cikarmadi. Vucudunu sakatliktan korudun.",
+          "normal_effects": { "xp": 5, "stamina_delta": -4, "coach_trust_delta": -6, "team_trust_delta": -3 }
+        },
+        {
+          "label": "Durustce dun gece gec yattigini itiraf et ve ozur dile.",
+          "normal_text": "Hoca fircayi basti ama yalan soylemedigin icin kapiyi kapatmadi.",
+          "normal_effects": { "xp": 8, "stamina_delta": -9, "coach_trust_delta": -4, "team_trust_delta": 2 }
+        }
+      ]
+    }
+  ]
+}

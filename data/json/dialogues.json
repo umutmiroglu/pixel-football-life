@@ -1,0 +1,70 @@
+{
+  "openings_by_temperament": {
+    "arrogant": [
+      "Benim seviyemde birinin zamanini almak icin iyi bir sebebin vardir umarim.",
+      "Gecen macta fena degildin, ama hala benim tempoma yetismen lazim."
+    ],
+    "cheerful": [
+      "Selam dostum! Yuzun guluyor, bugun harika bir gun olacak!",
+      "Gel bakalim yildiz oyuncu, iki lafin belini kiralim!"
+    ],
+    "calm": [
+      "Selam. Sakin ve odakli gorunuyorsun, bu iyi.",
+      "Her sey kontrol altinda mi? Konusalim."
+    ],
+    "aggressive": [
+      "Ne bakiyorsun? Sahada bu kadar istekli olsan sampiyonduk!",
+      "Hizli ol, bos laf dinleyecek vaktim yok."
+    ],
+    "introverted": [
+      "A-aa selam... Seni burada gormeyi beklemiyordum, nasilsin?",
+      "Merhaba... Son mactaki paslarin gercekten cok guzeldi."
+    ]
+  },
+  "body_by_interest": {
+    "nightlife": [
+      "Bu aksam sehirdeki kulupte kafayi dagitmak sart gibi.",
+      "Sadece idman ve uykuyla hayat mi gecer? Biraz nefes almak lazim."
+    ],
+    "tactics": [
+      "Rakibin orta saha bloklari cok acik kaliyor, yarim alanlara sizarsan mac biter.",
+      "Ucgen kurmadan dikine top sisirmek futbol degil, akilla oynamaliyiz."
+    ],
+    "money": [
+      "Bu kasaba maasiyla omur gecmez. Piyasa degerini artirmaya bak, gerisi teferruat.",
+      "Sponsorluk ve primler olmadan attigin golun pek bir anlami yok acikcasi."
+    ],
+    "family": [
+      "En guzeli aksam eve donup sevdiklerinle sicak bir cay icmek. Huzur her seyden onemli.",
+      "Kasabada herkes birbirini tanir, koklerine sadik kalmak gerekir."
+    ],
+    "cars": [
+      "Ilk buyuk sozlesmede altina guzel bir coupe cekmezsen ne anlami var bu isin?",
+      "Motor sesi gibi bir depar atabilsen seni kimse tutamaz!"
+    ]
+  },
+  "hangover_reaction_by_philosophy": {
+    "perfectionist": "Gozlerin kipkirmizi! Dun gece yine mi disaridaydin? Bu disiplinsizlikle ilk 11'i unut!",
+    "loyal": "Bu armayi tasiyan bir oyuncu mac oncesi kendine dikkat etmeli, hayal kirikligi...",
+    "stoic": "Kendi secimin, ama vucudun sahada bunun bedelini odeyecektir.",
+    "hedonist": "Hah! Dun gece iyi eglenmissin belli, yuzunden okunuyor!",
+    "machiavellian": "Yorgun gorunuyorsun... Umarim bu durum benim pozisyonuma yaramaz, haha."
+  },
+  "daily_choices": [
+    {
+      "id": "talk_football",
+      "text": "Taktik ve hafta sonu maci uzerine konus.",
+      "effects": { "affection": 3, "pitch_trust": 7 }
+    },
+    {
+      "id": "talk_friendly",
+      "text": "Saha disi havadan sudan muhabbet ac ve espri yap.",
+      "effects": { "affection": 8, "pitch_trust": 1 }
+    },
+    {
+      "id": "talk_confident",
+      "text": "Bu sezon takimi tek basina sirtlayacagini soyle.",
+      "effects": { "affection": 2, "pitch_trust": 5, "ego_check": true }
+    }
+  ]
+}

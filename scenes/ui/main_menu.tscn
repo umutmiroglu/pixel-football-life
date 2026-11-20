@@ -1,0 +1,222 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_menu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.05, 0.09, 0.15, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.82, 0.98, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sub"]
+bg_color = Color(0.08, 0.13, 0.21, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.26, 0.42, 0.6, 0.75)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 4.0
+content_margin_top = 3.0
+content_margin_right = 4.0
+content_margin_bottom = 3.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.16, 0.11, 1)
+
+[node name="PitchStripe1" type="ColorRect" parent="Bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -200.0
+color = Color(0.09, 0.21, 0.13, 0.8)
+
+[node name="PitchStripe2" type="ColorRect" parent="Bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_right = -40.0
+color = Color(0.09, 0.21, 0.13, 0.8)
+
+[node name="CenterCard" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="CenterCard"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TopTitleRow" type="HBoxContainer" parent="CenterCard/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="CenterCard/VBox/TopTitleRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.92, 0.35, 1)
+theme_override_font_sizes/font_size = 8
+text = "PIXEL FOOTBALL LIFE — KARAKTER & RPG OLUSTURMA"
+
+[node name="ContinueBtn" type="Button" parent="CenterCard/VBox/TopTitleRow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 1, 0.58, 1)
+theme_override_font_sizes/font_size = 5
+text = "DEVAM ET"
+
+[node name="MainSplit" type="HBoxContainer" parent="CenterCard/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="LeftLookPanel" type="PanelContainer" parent="CenterCard/VBox/MainSplit"]
+custom_minimum_size = Vector2(118, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sub")
+
+[node name="LookVBox" type="VBoxContainer" parent="CenterCard/VBox/MainSplit/LeftLookPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PreviewRow" type="HBoxContainer" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PreviewBg" type="ColorRect" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox/PreviewRow"]
+custom_minimum_size = Vector2(40, 42)
+layout_mode = 2
+color = Color(0.12, 0.18, 0.26, 1)
+
+[node name="PreviewHolder" type="Node2D" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox/PreviewRow/PreviewBg"]
+unique_name_in_owner = true
+position = Vector2(20, 31)
+
+[node name="RandCol" type="VBoxContainer" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox/PreviewRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LookTitle" type="Label" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox/PreviewRow/RandCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "GORUNUM"
+horizontal_alignment = 1
+
+[node name="RandNameBtn" type="Button" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox/PreviewRow/RandCol"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Rastgele"
+
+[node name="AppearanceBox" type="VBoxContainer" parent="CenterCard/VBox/MainSplit/LeftLookPanel/LookVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="RightRPGPanel" type="PanelContainer" parent="CenterCard/VBox/MainSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_sub")
+
+[node name="RpgVBox" type="VBoxContainer" parent="CenterCard/VBox/MainSplit/RightRPGPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="NameRow" type="HBoxContainer" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="NameLbl" type="Label" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox/NameRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Ad:"
+
+[node name="NameInput" type="LineEdit" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox/NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Umut"
+
+[node name="PosCAMBtn" type="Button" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox/NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "CAM"
+
+[node name="PosSTBtn" type="Button" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox/NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "ST"
+
+[node name="PosWINGBtn" type="Button" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox/NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "WING"
+
+[node name="PointsLeftLabel" type="Label" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 1, 0.58, 1)
+theme_override_font_sizes/font_size = 6
+text = "RPG Puan Dagilimi (Kalan: 15)"
+horizontal_alignment = 1
+
+[node name="StatsAllocBox" type="VBoxContainer" parent="CenterCard/VBox/MainSplit/RightRPGPanel/RpgVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="StartNewBtn" type="Button" parent="CenterCard/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.4, 1)
+theme_override_font_sizes/font_size = 7
+text = "YENI KARIYERE BASLA"

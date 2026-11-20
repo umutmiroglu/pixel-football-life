@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/character/procedural_character.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/character/shadow_12x5.png" id="2_shadow"]
+[ext_resource type="Texture2D" path="res://assets/sprites/character/legs/legs_0.png" id="3_legs"]
+[ext_resource type="Texture2D" path="res://assets/sprites/character/body/body_0.png" id="4_body"]
+[ext_resource type="Texture2D" path="res://assets/sprites/character/face/face_0.png" id="5_face"]
+[ext_resource type="Texture2D" path="res://assets/sprites/character/hair/hair_1.png" id="6_hair"]
+[ext_resource type="Texture2D" path="res://assets/sprites/character/beard/beard_0.png" id="7_beard"]
+
+[node name="ProceduralCharacter" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 6)
+texture = ExtResource("2_shadow")
+
+[node name="LegsSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("3_legs")
+hframes = 4
+vframes = 4
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("4_body")
+hframes = 4
+vframes = 4
+
+[node name="FaceSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("5_face")
+hframes = 4
+vframes = 4
+
+[node name="HairSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("6_hair")
+hframes = 4
+vframes = 4
+
+[node name="BeardSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("7_beard")
+hframes = 4
+vframes = 4

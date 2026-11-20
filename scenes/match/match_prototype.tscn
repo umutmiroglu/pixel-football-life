@@ -1,0 +1,926 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/match/match_director.gd" id="1_director"]
+[ext_resource type="Script" path="res://scripts/match/match_player.gd" id="2_player"]
+[ext_resource type="Script" path="res://scripts/match/ball.gd" id="3_ball"]
+[ext_resource type="Script" path="res://scripts/match/match_camera.gd" id="4_camera"]
+[ext_resource type="Script" path="res://scripts/match/match_hud.gd" id="5_hud"]
+[ext_resource type="Script" path="res://scripts/match/match_evaluator.gd" id="6_evaluator"]
+[ext_resource type="Script" path="res://scripts/match/fm_sim_overlay.gd" id="7_fm_overlay"]
+[ext_resource type="PackedScene" path="res://scenes/character/procedural_character.tscn" id="8_proc_char"]
+[ext_resource type="PackedScene" path="res://scenes/ui/social_panel.tscn" id="9_social_panel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gback"]
+size = Vector2(16, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gside"]
+size = Vector2(36, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_post"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_garea"]
+size = Vector2(26, 88)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ball"]
+radius = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_debug"]
+bg_color = Color(0.08, 0.1, 0.14, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.65, 0.9, 0.75)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fm_box"]
+bg_color = Color(0.08, 0.11, 0.16, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.42, 0.58, 0.8)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+
+[node name="MatchPrototype" type="Node2D"]
+script = ExtResource("1_director")
+
+[node name="MatchEvaluator" type="Node" parent="."]
+script = ExtResource("6_evaluator")
+
+[node name="PitchWorld" type="Node2D" parent="."]
+
+[node name="Pitch" type="Node2D" parent="PitchWorld"]
+
+[node name="OuterGrass" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -560.0
+offset_top = -340.0
+offset_right = 560.0
+offset_bottom = 340.0
+color = Color(0.08, 0.22, 0.13, 1)
+
+[node name="MainGrass" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.13, 0.36, 0.2, 1)
+
+[node name="Stripe1" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -400.0
+offset_top = -270.0
+offset_right = -320.0
+offset_bottom = 270.0
+color = Color(0.15, 0.39, 0.22, 1)
+
+[node name="Stripe2" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -240.0
+offset_top = -270.0
+offset_right = -160.0
+offset_bottom = 270.0
+color = Color(0.15, 0.39, 0.22, 1)
+
+[node name="Stripe3" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -80.0
+offset_top = -270.0
+offset_right = 0.0
+offset_bottom = 270.0
+color = Color(0.15, 0.39, 0.22, 1)
+
+[node name="Stripe4" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = 80.0
+offset_top = -270.0
+offset_right = 160.0
+offset_bottom = 270.0
+color = Color(0.15, 0.39, 0.22, 1)
+
+[node name="Stripe5" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = 240.0
+offset_top = -270.0
+offset_right = 320.0
+offset_bottom = 270.0
+color = Color(0.15, 0.39, 0.22, 1)
+
+[node name="Stripe6" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = 400.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.15, 0.39, 0.22, 1)
+
+[node name="CenterLine" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -1.0
+offset_top = -270.0
+offset_right = 1.0
+offset_bottom = 270.0
+color = Color(0.9, 0.96, 0.9, 0.5)
+
+[node name="CenterCircle" type="Line2D" parent="PitchWorld/Pitch"]
+points = PackedVector2Array(55, 0, 50.8, 21, 38.9, 38.9, 21, 50.8, 0, 55, -21, 50.8, -38.9, 38.9, -50.8, 21, -55, 0, -50.8, -21, -38.9, -38.9, -21, -50.8, 0, -55, 21, -50.8, 38.9, -38.9, 50.8, -21, 55, 0)
+width = 2.0
+default_color = Color(0.9, 0.96, 0.9, 0.45)
+
+[node name="LeftPenaltyBox" type="Line2D" parent="PitchWorld/Pitch"]
+points = PackedVector2Array(-480, -110, -355, -110, -355, 110, -480, 110)
+width = 2.0
+default_color = Color(0.9, 0.96, 0.9, 0.5)
+
+[node name="RightPenaltyBox" type="Line2D" parent="PitchWorld/Pitch"]
+points = PackedVector2Array(480, -110, 355, -110, 355, 110, 480, 110)
+width = 2.0
+default_color = Color(0.9, 0.96, 0.9, 0.5)
+
+[node name="HomeGoalNet" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = -512.0
+offset_top = -46.0
+offset_right = -480.0
+offset_bottom = 46.0
+color = Color(0.9, 0.95, 1, 0.28)
+
+[node name="AwayGoalNet" type="ColorRect" parent="PitchWorld/Pitch"]
+offset_left = 480.0
+offset_top = -46.0
+offset_right = 512.0
+offset_bottom = 46.0
+color = Color(0.9, 0.95, 1, 0.28)
+
+[node name="Walls" type="Node2D" parent="PitchWorld"]
+
+[node name="PitchBorderLines" type="Line2D" parent="PitchWorld/Walls"]
+points = PackedVector2Array(-480, -270, 480, -270, 480, 270, -480, 270, -480, -270)
+width = 2.5
+default_color = Color(0.95, 0.98, 0.95, 0.85)
+
+[node name="LeftPostTop" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(-480, -46)
+
+[node name="ColorRect" type="ColorRect" parent="PitchWorld/Walls/LeftPostTop"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(1, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/LeftPostTop"]
+shape = SubResource("CircleShape2D_post")
+
+[node name="LeftPostBottom" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(-480, 46)
+
+[node name="ColorRect" type="ColorRect" parent="PitchWorld/Walls/LeftPostBottom"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(1, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/LeftPostBottom"]
+shape = SubResource("CircleShape2D_post")
+
+[node name="LeftGoalBack" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(-520, 0)
+
+[node name="ColorRect" type="ColorRect" parent="PitchWorld/Walls/LeftGoalBack"]
+offset_left = -4.0
+offset_top = -50.0
+offset_right = 4.0
+offset_bottom = 50.0
+color = Color(0.95, 0.96, 0.98, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/LeftGoalBack"]
+shape = SubResource("RectangleShape2D_gback")
+
+[node name="LeftGoalSideTop" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(-500, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/LeftGoalSideTop"]
+shape = SubResource("RectangleShape2D_gside")
+
+[node name="LeftGoalSideBottom" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(-500, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/LeftGoalSideBottom"]
+shape = SubResource("RectangleShape2D_gside")
+
+[node name="RightPostTop" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(480, -46)
+
+[node name="ColorRect" type="ColorRect" parent="PitchWorld/Walls/RightPostTop"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(1, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/RightPostTop"]
+shape = SubResource("CircleShape2D_post")
+
+[node name="RightPostBottom" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(480, 46)
+
+[node name="ColorRect" type="ColorRect" parent="PitchWorld/Walls/RightPostBottom"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(1, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/RightPostBottom"]
+shape = SubResource("CircleShape2D_post")
+
+[node name="RightGoalBack" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(520, 0)
+
+[node name="ColorRect" type="ColorRect" parent="PitchWorld/Walls/RightGoalBack"]
+offset_left = -4.0
+offset_top = -50.0
+offset_right = 4.0
+offset_bottom = 50.0
+color = Color(0.95, 0.96, 0.98, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/RightGoalBack"]
+shape = SubResource("RectangleShape2D_gback")
+
+[node name="RightGoalSideTop" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(500, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/RightGoalSideTop"]
+shape = SubResource("RectangleShape2D_gside")
+
+[node name="RightGoalSideBottom" type="StaticBody2D" parent="PitchWorld/Walls"]
+position = Vector2(500, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Walls/RightGoalSideBottom"]
+shape = SubResource("RectangleShape2D_gside")
+
+[node name="HomeGoalArea" type="Area2D" parent="PitchWorld"]
+position = Vector2(-498, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/HomeGoalArea"]
+shape = SubResource("RectangleShape2D_garea")
+
+[node name="AwayGoalArea" type="Area2D" parent="PitchWorld"]
+position = Vector2(498, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/AwayGoalArea"]
+shape = SubResource("RectangleShape2D_garea")
+
+[node name="Footballers" type="Node2D" parent="PitchWorld"]
+
+[node name="Player" type="CharacterBody2D" parent="PitchWorld/Footballers"]
+position = Vector2(-20, 0)
+motion_mode = 1
+script = ExtResource("2_player")
+
+[node name="TurnRing" type="Line2D" parent="PitchWorld/Footballers/Player"]
+points = PackedVector2Array(12, 0, 11.1, 4.6, 8.5, 8.5, 4.6, 11.1, 0, 12, -4.6, 11.1, -8.5, 8.5, -11.1, 4.6, -12, 0, -11.1, -4.6, -8.5, -8.5, -4.6, -11.1, 0, -12, 4.6, -11.1, 8.5, -8.5, 11.1, -4.6, 12, 0)
+width = 1.6
+default_color = Color(1, 0.92, 0.2, 0.92)
+
+[node name="ProceduralCharacter" parent="PitchWorld/Footballers/Player" instance=ExtResource("8_proc_char")]
+
+[node name="NumberLabel" type="Label" parent="PitchWorld/Footballers/Player"]
+offset_left = 12.0
+offset_top = -7.0
+offset_right = 28.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(1, 0.96, 0.55, 1)
+theme_override_font_sizes/font_size = 6
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FacingIndicator" type="Polygon2D" parent="PitchWorld/Footballers/Player"]
+color = Color(1, 0.98, 0.6, 0.95)
+polygon = PackedVector2Array(6, -3, 11, 0, 6, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Footballers/Player"]
+shape = SubResource("CircleShape2D_player")
+
+[node name="AimLine" type="Line2D" parent="PitchWorld/Footballers/Player"]
+width = 2.0
+default_color = Color(1, 0.92, 0.3, 0.88)
+
+[node name="PassPreviewLine" type="Line2D" parent="PitchWorld/Footballers/Player"]
+width = 1.2
+default_color = Color(0.45, 0.95, 1, 0.55)
+
+[node name="Ball" type="CharacterBody2D" parent="PitchWorld"]
+motion_mode = 1
+script = ExtResource("3_ball")
+
+[node name="BallPolygon" type="Polygon2D" parent="PitchWorld/Ball"]
+color = Color(1, 0.99, 0.92, 1)
+polygon = PackedVector2Array(0, -4, 3, -3, 4, 0, 3, 3, 0, 4, -3, 3, -4, 0, -3, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitchWorld/Ball"]
+shape = SubResource("CircleShape2D_ball")
+
+[node name="MatchCamera" type="Camera2D" parent="."]
+process_callback = 0
+rotation = 1.5708
+zoom = Vector2(0.8, 0.8)
+script = ExtResource("4_camera")
+
+[node name="MatchHUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_hud")
+
+[node name="RootControl" type="Control" parent="MatchHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FMSimOverlay" type="Control" parent="MatchHUD/RootControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_fm_overlay")
+
+[node name="Bg" type="ColorRect" parent="MatchHUD/RootControl/FMSimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.11, 1)
+
+[node name="MainMargin" type="MarginContainer" parent="MatchHUD/RootControl/FMSimOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 5
+
+[node name="MainVBox" type="VBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ScoreboardBox" type="PanelContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fm_box")
+
+[node name="ScoreVBox" type="VBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Row1" type="HBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox"]
+layout_mode = 2
+
+[node name="SimClockLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "01' [1x]"
+
+[node name="SimScoreLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 9
+text = "MAVI 0 - 0 KIRMIZI"
+horizontal_alignment = 1
+
+[node name="SimRatingLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 7
+text = "PUAN: 6.0"
+
+[node name="SimStaminaLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.96, 0.5, 1)
+theme_override_font_sizes/font_size = 7
+text = "STAM: %100"
+
+[node name="Row2" type="HBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox"]
+layout_mode = 2
+
+[node name="SimStatsLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox/Row2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.76, 0.84, 0.92, 1)
+theme_override_font_sizes/font_size = 6
+text = "Topa Sahip Olma: %52 - %48 | Sut: 0 - 0"
+
+[node name="SimCoachLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/ScoreboardBox/ScoreVBox/Row2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.95, 0.72, 1)
+theme_override_font_sizes/font_size = 6
+text = "HOCA (Tiki-Taka): %65"
+
+[node name="BodySplit" type="HBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="RadarBox" type="PanelContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/BodySplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.25
+theme_override_styles/panel = SubResource("StyleBoxFlat_fm_box")
+
+[node name="RadarCanvas" type="Control" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/BodySplit/RadarBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FeedBox" type="PanelContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/BodySplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fm_box")
+
+[node name="FeedLabel" type="RichTextLabel" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/BodySplit/FeedBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 6
+theme_override_font_sizes/bold_font_size = 6
+bbcode_enabled = true
+scroll_following = true
+
+[node name="SimControlsRow" type="HBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Speed1Btn" type="Button" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/SimControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "1x"
+
+[node name="Speed2Btn" type="Button" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/SimControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "2x"
+
+[node name="Speed4Btn" type="Button" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/SimControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "4x"
+
+[node name="TriggerBtn" type="Button" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/SimControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Pozisyon Test"
+
+[node name="SocialBtn" type="Button" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/SimControlsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Sosyal / Soyunma"
+
+[node name="HintLbl" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/MainMargin/MainVBox/SimControlsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.78, 0.88, 1)
+theme_override_font_sizes/font_size = 6
+text = "[TAB] Ozellik & Hoca Tarzi Paneli"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FullTimePanel" type="PanelContainer" parent="MatchHUD/RootControl/FMSimOverlay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -62.0
+offset_right = 112.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_debug")
+
+[node name="FTVBox" type="VBoxContainer" parent="MatchHUD/RootControl/FMSimOverlay/FullTimePanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="FTTitle" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/FullTimePanel/FTVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.35, 1)
+theme_override_font_sizes/font_size = 9
+text = "90' MAC SONU RAPORU"
+horizontal_alignment = 1
+
+[node name="FTSummaryLabel" type="Label" parent="MatchHUD/RootControl/FMSimOverlay/FullTimePanel/FTVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 7
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewMatchBtn" type="Button" parent="MatchHUD/RootControl/FMSimOverlay/FullTimePanel/FTVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "KASABAYA DON"
+
+[node name="TurnVignette" type="Control" parent="MatchHUD/RootControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBorder" type="ColorRect" parent="MatchHUD/RootControl/TurnVignette"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(1, 0.88, 0.25, 0.7)
+
+[node name="BottomBorder" type="ColorRect" parent="MatchHUD/RootControl/TurnVignette"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(1, 0.88, 0.25, 0.7)
+
+[node name="LeftBorder" type="ColorRect" parent="MatchHUD/RootControl/TurnVignette"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.88, 0.25, 0.7)
+
+[node name="RightBorder" type="ColorRect" parent="MatchHUD/RootControl/TurnVignette"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.88, 0.25, 0.7)
+
+[node name="TopPanel" type="ColorRect" parent="MatchHUD/RootControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.06, 0.08, 0.12, 0.82)
+
+[node name="TopVBox" type="VBoxContainer" parent="MatchHUD/RootControl/TopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+mouse_filter = 2
+
+[node name="HeaderRow" type="HBoxContainer" parent="MatchHUD/RootControl/TopPanel/TopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+mouse_filter = 2
+
+[node name="ClockLabel" type="Label" parent="MatchHUD/RootControl/TopPanel/TopVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "01'"
+
+[node name="SpeedLabel" type="Label" parent="MatchHUD/RootControl/TopPanel/TopVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "[1x]"
+
+[node name="ScoreLabel" type="Label" parent="MatchHUD/RootControl/TopPanel/TopVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 7
+text = "MAVI 0 - 0 KIRMIZI"
+horizontal_alignment = 1
+
+[node name="RatingLabel" type="Label" parent="MatchHUD/RootControl/TopPanel/TopVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "PUAN: 6.0"
+
+[node name="CoachLabel" type="Label" parent="MatchHUD/RootControl/TopPanel/TopVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "Tiki-Taka: %65"
+
+[node name="CommentaryLabel" type="Label" parent="MatchHUD/RootControl/TopPanel/TopVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "01' Pozisyon basladi!"
+text_overrun_behavior = 3
+
+[node name="BottomPanel" type="ColorRect" parent="MatchHUD/RootControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.06, 0.08, 0.12, 0.78)
+
+[node name="BottomRow" type="HBoxContainer" parent="MatchHUD/RootControl/BottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+mouse_filter = 2
+
+[node name="BottomActionBar" type="HBoxContainer" parent="MatchHUD/RootControl/BottomPanel/BottomRow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+mouse_filter = 2
+
+[node name="StaminaBar" type="ProgressBar" parent="MatchHUD/RootControl/BottomPanel/BottomRow/BottomActionBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 7)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="PowerBar" type="ProgressBar" parent="MatchHUD/RootControl/BottomPanel/BottomRow/BottomActionBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 7)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="SpinLabel" type="Label" parent="MatchHUD/RootControl/BottomPanel/BottomRow/BottomActionBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "DUZ"
+
+[node name="LobLabel" type="Label" parent="MatchHUD/RootControl/BottomPanel/BottomRow/BottomActionBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "[YERDEN]"
+
+[node name="ControlsHint" type="Label" parent="MatchHUD/RootControl/BottomPanel/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.9, 0.96, 0.9)
+theme_override_font_sizes/font_size = 6
+text = "Sol:Sut | Sag/X:Pas | C:AraPasi | Shift:Calim"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BannerLabel" type="Label" parent="MatchHUD/RootControl"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -18.0
+offset_right = 125.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "KRITIK POZISYON!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugPanel" type="PanelContainer" parent="MatchHUD/RootControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_top = 26.0
+offset_right = -6.0
+offset_bottom = 172.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_debug")
+
+[node name="VBox" type="VBoxContainer" parent="MatchHUD/RootControl/DebugPanel"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.88, 1, 1)
+theme_override_font_sizes/font_size = 7
+text = "CANLI OZELLIK & TAKTIK TESTI"
+
+[node name="PosRow" type="HBoxContainer" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/PosRow"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Pozisyon:"
+
+[node name="PosSlider" type="HSlider" parent="MatchHUD/RootControl/DebugPanel/VBox/PosRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 100.0
+value = 74.0
+
+[node name="PosVal" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/PosRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "74"
+horizontal_alignment = 2
+
+[node name="TrustRow" type="HBoxContainer" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/TrustRow"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Itibar:"
+
+[node name="TrustSlider" type="HSlider" parent="MatchHUD/RootControl/DebugPanel/VBox/TrustRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 100.0
+value = 68.0
+
+[node name="TrustVal" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/TrustRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "68"
+horizontal_alignment = 2
+
+[node name="MarkRow" type="HBoxContainer" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/MarkRow"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Rakip Def:"
+
+[node name="MarkSlider" type="HSlider" parent="MatchHUD/RootControl/DebugPanel/VBox/MarkRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 100.0
+value = 64.0
+
+[node name="MarkVal" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/MarkRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "64"
+horizontal_alignment = 2
+
+[node name="StamRow" type="HBoxContainer" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/StamRow"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Stamina:"
+
+[node name="StamSlider" type="HSlider" parent="MatchHUD/RootControl/DebugPanel/VBox/StamRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 15.0
+max_value = 100.0
+value = 100.0
+
+[node name="StamVal" type="Label" parent="MatchHUD/RootControl/DebugPanel/VBox/StamRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "100"
+horizontal_alignment = 2
+
+[node name="StyleButton" type="Button" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Hoca: Tiki-Taka (Pas)"
+
+[node name="PositionButton" type="Button" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Mevki: CAM (10)"
+
+[node name="AppearanceButton" type="Button" parent="MatchHUD/RootControl/DebugPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Gorunum Degistir (5 Katman)"
+
+[node name="SocialPanel" parent="MatchHUD/RootControl" instance=ExtResource("9_social_panel")]
+visible = false

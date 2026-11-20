@@ -1,0 +1,33 @@
+{
+  "temperament": {
+    "arrogant": { "label": "Kibirli", "patience": 0.7, "hangover_penalty": 1.1 },
+    "cheerful": { "label": "Neseli", "patience": 1.25, "hangover_penalty": 0.6 },
+    "calm": { "label": "Sogukkanli", "patience": 1.1, "hangover_penalty": 1.0 },
+    "aggressive": { "label": "Agresif", "patience": 0.6, "hangover_penalty": 1.5 },
+    "introverted": { "label": "Ice Donuk", "patience": 1.2, "hangover_penalty": 0.8 }
+  },
+  "interest": {
+    "nightlife": { "label": "Gece Hayati", "club_bonus": 1.8 },
+    "tactics": { "label": "Taktik Dehasi", "club_bonus": 0.4 },
+    "money": { "label": "Para Duskunu", "club_bonus": 1.0 },
+    "family": { "label": "Aile Odakli", "club_bonus": 0.3 },
+    "cars": { "label": "Spor Arabalar", "club_bonus": 1.3 }
+  },
+  "philosophy": {
+    "hedonist": { "label": "Hazci", "discipline_weight": 0.5 },
+    "perfectionist": { "label": "Mukemmeliyetci", "discipline_weight": 1.8 },
+    "loyal": { "label": "Sadik / Kulupcu", "discipline_weight": 1.3 },
+    "machiavellian": { "label": "Makyavelist", "discipline_weight": 0.9 },
+    "stoic": { "label": "Stoaci", "discipline_weight": 1.2 }
+  },
+  "role": {
+    "captain": { "label": "Takim Kaptani", "football_world": true },
+    "teammate": { "label": "Takim Arkadasi", "football_world": true },
+    "coach": { "label": "Teknik Direktor", "football_world": true },
+    "agent": { "label": "Menajer", "football_world": true },
+    "chairman": { "label": "Kulup Baskani", "football_world": true },
+    "shopkeeper": { "label": "Kasaba Esnafi", "football_world": false },
+    "journalist": { "label": "Gazeteci", "football_world": false },
+    "barista": { "label": "Kafe Baristasi", "football_world": false }
+  }
+}

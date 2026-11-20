@@ -1,0 +1,213 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/training_ground.gd" id="1_train"]
+[ext_resource type="Script" path="res://scripts/world/town_player.gd" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/character/procedural_character.tscn" id="3_proc_char"]
+[ext_resource type="PackedScene" path="res://scenes/ui/story_dialogue_box.tscn" id="4_dlg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/sleep_transition_overlay.tscn" id="5_sleep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p"]
+radius = 6.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh"]
+size = Vector2(440, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv"]
+size = Vector2(14, 240)
+
+[node name="TrainingGround" type="Node2D"]
+script = ExtResource("1_train")
+
+[node name="BgOuter" type="ColorRect" parent="."]
+offset_left = -260.0
+offset_top = -150.0
+offset_right = 260.0
+offset_bottom = 150.0
+color = Color(0.11, 0.25, 0.14, 1)
+
+[node name="BusParking" type="ColorRect" parent="."]
+offset_left = -210.0
+offset_top = -65.0
+offset_right = -138.0
+offset_bottom = 85.0
+color = Color(0.32, 0.34, 0.38, 1)
+
+[node name="BusVisual" type="ColorRect" parent="."]
+offset_left = -196.0
+offset_top = -16.0
+offset_right = -152.0
+offset_bottom = 32.0
+color = Color(0.92, 0.72, 0.16, 1)
+
+[node name="BusLbl" type="Label" parent="."]
+offset_left = -206.0
+offset_top = -30.0
+offset_right = -142.0
+offset_bottom = -18.0
+theme_override_colors/font_color = Color(1, 0.94, 0.52, 1)
+theme_override_font_sizes/font_size = 5
+text = "<- KASABA OTOBUSU"
+horizontal_alignment = 1
+
+[node name="GrassField" type="ColorRect" parent="."]
+offset_left = -115.0
+offset_top = -95.0
+offset_right = 205.0
+offset_bottom = 95.0
+color = Color(0.14, 0.46, 0.23, 1)
+
+[node name="PitchBorder" type="Line2D" parent="."]
+points = PackedVector2Array(-115, -95, 205, -95, 205, 95, -115, 95, -115, -95)
+width = 2.0
+default_color = Color(0.95, 0.98, 0.95, 0.85)
+
+[node name="DrillConeArea" type="ColorRect" parent="."]
+offset_left = 48.0
+offset_top = -30.0
+offset_right = 96.0
+offset_bottom = 14.0
+color = Color(0.95, 0.55, 0.18, 0.35)
+
+[node name="DrillLbl" type="Label" parent="."]
+offset_left = 20.0
+offset_top = -42.0
+offset_right = 124.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 6
+text = "TAKIM IDMAN DESTESI"
+horizontal_alignment = 1
+
+[node name="MiniGoal" type="ColorRect" parent="."]
+offset_left = 195.0
+offset_top = -32.0
+offset_right = 212.0
+offset_bottom = 32.0
+color = Color(0.92, 0.95, 1, 0.6)
+
+[node name="MiniGoalLbl" type="Label" parent="."]
+offset_left = 128.0
+offset_top = -46.0
+offset_right = 216.0
+offset_bottom = -32.0
+theme_override_colors/font_color = Color(1, 0.92, 0.42, 1)
+theme_override_font_sizes/font_size = 5
+text = "SERBEST VURUS DESTESI ->"
+horizontal_alignment = 1
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopW" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -108)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/TopW"]
+shape = SubResource("RectangleShape2D_wh")
+
+[node name="BotW" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 108)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/BotW"]
+shape = SubResource("RectangleShape2D_wh")
+
+[node name="LeftW" type="StaticBody2D" parent="Walls"]
+position = Vector2(-216, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/LeftW"]
+shape = SubResource("RectangleShape2D_wv")
+
+[node name="RightW" type="StaticBody2D" parent="Walls"]
+position = Vector2(216, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/RightW"]
+shape = SubResource("RectangleShape2D_wv")
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="TownPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(-132, 10)
+motion_mode = 1
+script = ExtResource("2_player")
+
+[node name="ProceduralCharacter" parent="TownPlayer" instance=ExtResource("3_proc_char")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownPlayer"]
+shape = SubResource("CircleShape2D_p")
+
+[node name="Camera2D" type="Camera2D" parent="TownPlayer"]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 9.0
+
+[node name="TrainingHUD" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="TrainingHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="ColorRect" parent="TrainingHUD/Root"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.05, 0.07, 0.11, 0.85)
+
+[node name="TrainingInfoLabel" type="Label" parent="TrainingHUD/Root/TopBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.65, 0.96, 0.72, 1)
+theme_override_font_sizes/font_size = 6
+text = "ANTRENMAN TESISLERI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrainingPromptLabel" type="Label" parent="TrainingHUD/Root"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -18.0
+offset_right = -12.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.94, 0.42, 1)
+theme_override_font_sizes/font_size = 7
+text = "[E] Etkiles"
+horizontal_alignment = 1
+
+[node name="TrainingToastLabel" type="Label" parent="TrainingHUD/Root"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 24.0
+offset_right = -12.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = ""
+horizontal_alignment = 1
+
+[node name="StoryDialogueBox" parent="TrainingHUD/Root" instance=ExtResource("4_dlg")]
+visible = false
+
+[node name="SleepTransitionOverlay" parent="TrainingHUD/Root" instance=ExtResource("5_sleep")]
+visible = false

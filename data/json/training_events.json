@@ -1,0 +1,96 @@
+{
+  "events": [
+    {
+      "id": "tr_weights_session",
+      "title": "Agirlik ve Fizik Yuklemesi",
+      "requires_hangover": false,
+      "description": "Kondisyoner bugun salonda agir halter programi hazirladi. Kas kutleni artirmak icin firsat, ama fazla agirlik cevikligini etkileyebilir.",
+      "choices": [
+        {
+          "label": "En agir setlere gir ve kendini sonuna kadar zorla.",
+          "result_text": "Salondan kollarin titreyerek ciktin ama fiziksel gucun belirgin sekilde artti.",
+          "effects": { "stat": "physical", "stat_delta": 3, "stamina_delta": -26, "coach_trust_delta": 4 }
+        },
+        {
+          "label": "Dengeli ve kontrollu bir program uygula.",
+          "result_text": "Temiz, sakatlik riski olmayan verimli bir kuvvet calismasi oldu.",
+          "effects": { "stat": "physical", "stat_delta": 1, "stamina_delta": -14, "coach_trust_delta": 2 }
+        },
+        {
+          "label": "Agirlik yerine esneme ve hiz merdiveni calis.",
+          "result_text": "Kas kutlesi yerine cabuklugunu ve adim frekansini korudun.",
+          "effects": { "stat": "speed", "stat_delta": 2, "stamina_delta": -16, "coach_trust_delta": 0 }
+        }
+      ]
+    },
+    {
+      "id": "tr_freekick_duel",
+      "title": "Idman Sonu Frikik Yarismasi",
+      "requires_hangover": false,
+      "description": "Idman biterken takim arkadaslarin ceza yayina top dizdi. Kaleci de eldivenlerini cikarmadi: 'Kim 90'a asarsa kahveler benden!'",
+      "choices": [
+        {
+          "label": "Kavisli falso vuruslari calisarak barajin ustunden dene.",
+          "result_text": "Ust uste iki falsolu vurusun direkte patlayip aglara gitti! Takim arkadaslarin alkisliyor.",
+          "effects": { "stat": "curve", "stat_delta": 2, "stamina_delta": -18, "team_trust_delta": 4 }
+        },
+        {
+          "label": "Sert, duz ve yerden bitirici sutlara odaklan.",
+          "result_text": "Kalecinin uzanamadigi koselere sert sutlar biraktin.",
+          "effects": { "stat": "shooting", "stat_delta": 2, "stamina_delta": -18, "team_trust_delta": 3 }
+        },
+        {
+          "label": "Bacaklarini yorma, erkenden dusa girip dinlen.",
+          "result_text": "Enerjini hafta sonu macina sakladin.",
+          "effects": { "stamina_delta": 6, "team_trust_delta": -2 }
+        }
+      ]
+    },
+    {
+      "id": "tr_tactical_rondo",
+      "title": "Dar Alan Pas ve Taktik Tahtasi",
+      "requires_hangover": false,
+      "description": "Hoca bugun yuksek tempolu 5v2 dar alan pas calismasi ve bosluk kosusu provasi yaptiriyor.",
+      "choices": [
+        {
+          "label": "Tek pasta dikine ara paslari zorla ve oyunu yonlendir.",
+          "result_text": "Goz acip kapayincaya kadar acilan pas kanallari hocanin gozunden kacmadi.",
+          "effects": { "stat": "vision", "stat_delta": 2, "stat2": "passing", "stat2_delta": 1, "stamina_delta": -18, "coach_trust_delta": 5 }
+        },
+        {
+          "label": "Savunma arkasina topsuz kosulara ve pozisyon almaya odaklan.",
+          "result_text": "Stoperlerin kor noktasina sizma zamanlaman cok keskinlesti.",
+          "effects": { "stat": "positioning", "stat_delta": 2, "stamina_delta": -16, "coach_trust_delta": 3 }
+        },
+        {
+          "label": "Dar alanda bire bir calim ve top saklama dene.",
+          "result_text": "Bir kac kisiyi bilek hareketiyle gecsen de hoca pas temposunun dusmesine biraz bozuldu.",
+          "effects": { "stat": "dribbling", "stat_delta": 2, "stamina_delta": -18, "coach_trust_delta": -2 }
+        }
+      ]
+    },
+    {
+      "id": "tr_hangover_crisis",
+      "title": "Aksamdan Kalma Idman Krizi!",
+      "requires_hangover": true,
+      "description": "Basin catliyor, gunes gozunu aliyor. Hoca isinma kosusunda gozlerini kisip sana bakiyor: 'Bir sorun mu var evlat, rengin atmis?'",
+      "choices": [
+        {
+          "label": "Disini sik ve hic belli etmeden tam tempo kos!",
+          "result_text": "Nefesin kesildi, bacaklarin kurşun gibi ama hocaya renk vermedin.",
+          "effects": { "stat": "stamina", "stat_delta": 1, "stamina_delta": -28, "coach_trust_delta": 1 }
+        },
+        {
+          "label": "Hafif mide usutmesi bahanesiyle kenarda tempolu yuruyus yap.",
+          "result_text": "Hoca pek inanmasa da sesini cikarmadi. Vucudunu sakatliktan korudun.",
+          "effects": { "stamina_delta": -8, "coach_trust_delta": -7, "team_trust_delta": -3 }
+        },
+        {
+          "label": "Durustce dun gece gec yattigini itiraf et ve ozur dile.",
+          "result_text": "Hoca fircayi basti ama yalan soylemedigin icin kapiyi tamamen kapatmadi.",
+          "effects": { "stamina_delta": -14, "coach_trust_delta": -5, "team_trust_delta": 2 }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/starter_town.gd" id="1_town"]
+[ext_resource type="Script" path="res://scripts/world/town_player.gd" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/character/procedural_character.tscn" id="3_proc_char"]
+[ext_resource type="PackedScene" path="res://scenes/ui/story_dialogue_box.tscn" id="4_dlg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pc_hub_modal.tscn" id="5_pc"]
+[ext_resource type="PackedScene" path="res://scenes/ui/negotiation_modal.tscn" id="6_neg"]
+[ext_resource type="Script" path="res://scripts/world/town_tilemap_builder.gd" id="7_tilemap"]
+[ext_resource type="PackedScene" path="res://scenes/ui/season_end_modal.tscn" id="8_season"]
+[ext_resource type="PackedScene" path="res://scenes/ui/crisis_event_modal.tscn" id="9_crisis"]
+[ext_resource type="PackedScene" path="res://scenes/ui/sleep_transition_overlay.tscn" id="10_sleep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 6.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_h"]
+size = Vector2(1040, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_v"]
+size = Vector2(16, 580)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bus"]
+bg_color = Color(0.06, 0.09, 0.15, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95, 0.78, 0.22, 0.95)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+[node name="StarterTown" type="Node2D"]
+script = ExtResource("1_town")
+
+[node name="TownTileMapBuilder" type="Node2D" parent="."]
+script = ExtResource("7_tilemap")
+
+[node name="SquareLabel" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -14.0
+offset_right = 86.0
+offset_bottom = 0.0
+theme_override_colors/font_color = Color(0.18, 0.18, 0.22, 0.9)
+theme_override_font_sizes/font_size = 5
+text = "KASABA MEYDANI"
+horizontal_alignment = 1
+
+[node name="AlleyLabel" type="Label" parent="."]
+offset_left = -476.0
+offset_top = 208.0
+offset_right = -416.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0.75, 0.8, 0.9, 0.85)
+theme_override_font_sizes/font_size = 5
+text = "ARKA\nSOKAK"
+horizontal_alignment = 1
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="TopBound" type="StaticBody2D" parent="Collisions"]
+position = Vector2(0, -276)
+
+[node name="Col" type="CollisionShape2D" parent="Collisions/TopBound"]
+shape = SubResource("RectangleShape2D_wall_h")
+
+[node name="BottomBound" type="StaticBody2D" parent="Collisions"]
+position = Vector2(0, 260)
+
+[node name="Col" type="CollisionShape2D" parent="Collisions/BottomBound"]
+shape = SubResource("RectangleShape2D_wall_h")
+
+[node name="LeftBound" type="StaticBody2D" parent="Collisions"]
+position = Vector2(-492, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Collisions/LeftBound"]
+shape = SubResource("RectangleShape2D_wall_v")
+
+[node name="RightBound" type="StaticBody2D" parent="Collisions"]
+position = Vector2(492, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Collisions/RightBound"]
+shape = SubResource("RectangleShape2D_wall_v")
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="TownPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(-368, -138)
+motion_mode = 1
+script = ExtResource("2_player")
+
+[node name="ProceduralCharacter" parent="TownPlayer" instance=ExtResource("3_proc_char")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownPlayer"]
+shape = SubResource("CircleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="TownPlayer"]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 9.0
+
+[node name="TownHUD" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="TownHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="ColorRect" parent="TownHUD/Root"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.05, 0.07, 0.11, 0.85)
+
+[node name="VBox" type="VBoxContainer" parent="TownHUD/Root/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+mouse_filter = 2
+
+[node name="Row1" type="HBoxContainer" parent="TownHUD/Root/TopBar/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+mouse_filter = 2
+
+[node name="DayLabel" type="Label" parent="TownHUD/Root/TopBar/VBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "S1 H1/7 — Carsamba"
+
+[node name="MoneyLabel" type="Label" parent="TownHUD/Root/TopBar/VBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.35, 1)
+theme_override_font_sizes/font_size = 6
+text = "1200 TL"
+
+[node name="StamLabel" type="Label" parent="TownHUD/Root/TopBar/VBox/Row1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.98, 0.52, 1)
+theme_override_font_sizes/font_size = 6
+text = "STAM: %100"
+
+[node name="QuestHintLabel" type="Label" parent="TownHUD/Root/TopBar/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.38, 1)
+theme_override_font_sizes/font_size = 6
+text = "Kasabayi gez!"
+
+[node name="PromptLabel" type="Label" parent="TownHUD/Root"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -18.0
+offset_right = -20.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
+theme_override_font_sizes/font_size = 7
+text = "[E] Etkiles"
+horizontal_alignment = 1
+
+[node name="ToastLabel" type="Label" parent="TownHUD/Root"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 28.0
+offset_right = -14.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = ""
+horizontal_alignment = 1
+
+[node name="BusModal" type="PanelContainer" parent="TownHUD/Root"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -46.0
+offset_right = 108.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bus")
+
+[node name="BusVBox" type="VBoxContainer" parent="TownHUD/Root/BusModal"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BusHeader" type="Label" parent="TownHUD/Root/BusModal/BusVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.35, 1)
+theme_override_font_sizes/font_size = 8
+text = "KASABA OTOBUSU — NEREYE?"
+horizontal_alignment = 1
+
+[node name="BusTrainingBtn" type="Button" parent="TownHUD/Root/BusModal/BusVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Kulup Antrenman Tesisleri"
+
+[node name="BusStadiumBtn" type="Button" parent="TownHUD/Root/BusModal/BusVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Kasaba Stadyumu (Soyunma Odasi & Mac)"
+
+[node name="BusCancelBtn" type="Button" parent="TownHUD/Root/BusModal/BusVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Vazgec"
+
+[node name="StoryDialogueBox" parent="TownHUD/Root" instance=ExtResource("4_dlg")]
+visible = false
+
+[node name="PCHubModal" parent="TownHUD/Root" instance=ExtResource("5_pc")]
+visible = false
+
+[node name="NegotiationModal" parent="TownHUD/Root" instance=ExtResource("6_neg")]
+visible = false
+
+[node name="SeasonEndModal" parent="TownHUD/Root" instance=ExtResource("8_season")]
+visible = false
+
+[node name="CrisisEventModal" parent="TownHUD/Root" instance=ExtResource("9_crisis")]
+visible = false
+
+[node name="SleepTransitionOverlay" parent="TownHUD/Root" instance=ExtResource("10_sleep")]
+visible = false

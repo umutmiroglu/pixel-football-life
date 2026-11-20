@@ -1,0 +1,188 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/building_interior.gd" id="1_int"]
+[ext_resource type="Script" path="res://scripts/world/town_player.gd" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/character/procedural_character.tscn" id="3_char"]
+[ext_resource type="PackedScene" path="res://scenes/ui/story_dialogue_box.tscn" id="4_dlg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pc_hub_modal.tscn" id="5_pc"]
+[ext_resource type="PackedScene" path="res://scenes/ui/negotiation_modal.tscn" id="6_neg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/sleep_transition_overlay.tscn" id="7_sleep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p"]
+radius = 6.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh"]
+size = Vector2(236, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv"]
+size = Vector2(12, 136)
+
+[node name="BuildingInterior" type="Node2D"]
+script = ExtResource("1_int")
+
+[node name="OuterVoid" type="ColorRect" parent="."]
+offset_left = -220.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = 140.0
+color = Color(0.05, 0.06, 0.09, 1)
+
+[node name="FloorRect" type="ColorRect" parent="."]
+offset_left = -112.0
+offset_top = -62.0
+offset_right = 112.0
+offset_bottom = 66.0
+color = Color(0.46, 0.34, 0.22, 1)
+
+[node name="BackWallRect" type="ColorRect" parent="."]
+offset_left = -112.0
+offset_top = -78.0
+offset_right = 112.0
+offset_bottom = -50.0
+color = Color(0.74, 0.66, 0.54, 1)
+
+[node name="CustomInteriorBg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+
+[node name="ExitMat" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = 52.0
+offset_right = 16.0
+offset_bottom = 66.0
+color = Color(0.76, 0.56, 0.32, 1)
+
+[node name="ExitLbl" type="Label" parent="."]
+offset_left = -36.0
+offset_top = 40.0
+offset_right = 36.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 0.94, 0.55, 1)
+theme_override_font_sizes/font_size = 5
+text = "CIKIS KAPISI"
+horizontal_alignment = 1
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopW" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -56)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/TopW"]
+shape = SubResource("RectangleShape2D_wh")
+
+[node name="BotW" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 72)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/BotW"]
+shape = SubResource("RectangleShape2D_wh")
+
+[node name="LeftW" type="StaticBody2D" parent="Walls"]
+position = Vector2(-118, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/LeftW"]
+shape = SubResource("RectangleShape2D_wv")
+
+[node name="RightW" type="StaticBody2D" parent="Walls"]
+position = Vector2(118, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Walls/RightW"]
+shape = SubResource("RectangleShape2D_wv")
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="TownPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(0, 38)
+motion_mode = 1
+script = ExtResource("2_player")
+
+[node name="ProceduralCharacter" parent="TownPlayer" instance=ExtResource("3_char")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TownPlayer"]
+shape = SubResource("CircleShape2D_p")
+
+[node name="Camera2D" type="Camera2D" parent="TownPlayer"]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 9.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Root" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="ColorRect" parent="HUD/Root"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.05, 0.07, 0.11, 0.88)
+
+[node name="InteriorHeaderLabel" type="Label" parent="HUD/Root/TopBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "IC MEKAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteriorPromptLabel" type="Label" parent="HUD/Root"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -18.0
+offset_right = -12.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.94, 0.42, 1)
+theme_override_font_sizes/font_size = 7
+text = "[E] Etkiles"
+horizontal_alignment = 1
+
+[node name="InteriorToastLabel" type="Label" parent="HUD/Root"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 24.0
+offset_right = -12.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 7
+text = ""
+horizontal_alignment = 1
+
+[node name="StoryDialogueBox" parent="HUD/Root" instance=ExtResource("4_dlg")]
+visible = false
+
+[node name="PCHubModal" parent="HUD/Root" instance=ExtResource("5_pc")]
+visible = false
+
+[node name="NegotiationModal" parent="HUD/Root" instance=ExtResource("6_neg")]
+visible = false
+
+[node name="SleepTransitionOverlay" parent="HUD/Root" instance=ExtResource("7_sleep")]
+visible = false

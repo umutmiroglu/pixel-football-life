@@ -1,0 +1,958 @@
+{
+  "quest_id": "sq_aldatan_es_01",
+  "title": "Aldatan Eş",
+  "schema_version": "1.0",
+  "category": "teammate_drama",
+  "triggers": {
+    "location": "cafe_interior",
+    "time_slot": "free_day",
+    "npc_binding": {
+      "alias": "teammate",
+      "role": "teammate",
+      "required_tags_all": [
+        "temperament:introverted",
+        "interest:nightlife"
+      ]
+    },
+    "player_conditions": {
+      "min_weeks_at_club": 1,
+      "quest_not_started": "sq_aldatan_es_01"
+    }
+  },
+  "cast": {
+    "player": "{player_name}",
+    "teammate": "{teammate_name}",
+    "wife": "{wife_name}",
+    "ex_girlfriend": "{ex_gf_name}",
+    "lover": "{lover_name}",
+    "bar_girl": "Kulüpteki Kadın",
+    "narrator": "SYSTEM"
+  },
+  "nodes": {
+    "act1_cafe_intro": {
+      "act": 1,
+      "location": "cafe_interior",
+      "time_slot": "free_day",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Kafede otururken tanımadığın bir kadın yan masadan kalkıp tam karşına oturur."
+        },
+        {
+          "speaker": "wife",
+          "mood": "anxious",
+          "text": "{teammate_name}... Onu gördün mü hiç? Dünden beri ulaşamıyorum."
+        },
+        {
+          "speaker": "player",
+          "mood": "neutral",
+          "text": "Dün beraber antrenmandaydık. Bir sorun mu var?"
+        },
+        {
+          "speaker": "wife",
+          "mood": "tense",
+          "text": "Onu tekrar görürsen beni aramasını söyle. Lütfen."
+        },
+        {
+          "speaker": "player",
+          "mood": "curious",
+          "text": "Kimden diye sorarsa ne diyeyim?"
+        },
+        {
+          "speaker": "wife",
+          "mood": "cold",
+          "text": "Eşinden dersin."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Kadın arkasına bakmadan kafeden çıkar."
+        },
+        {
+          "speaker": "player",
+          "mood": "confused",
+          "text": "Bir saniye... {teammate_name} evli miydi?"
+        }
+      ],
+      "effects": {
+        "flags_add": [
+          "sq_aldatan_es_met_wife"
+        ],
+        "unlock_trigger": {
+          "node_id": "act2_training_confrontation",
+          "location": "training_ground_exit",
+          "delay_days": 1
+        }
+      },
+      "next": null
+    },
+    "act2_training_confrontation": {
+      "act": 2,
+      "location": "training_ground_exit",
+      "time_slot": "post_training",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Antrenman çıkışında {teammate_name} çantasını sırtlamış tek başına kapıya yürürken yanına yetişirsin."
+        },
+        {
+          "speaker": "player",
+          "mood": "neutral",
+          "text": "Selam. Dün kafede otururken eşin yanıma geldi. Sana ulaşamıyormuş, iletmemi istedi."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "angry",
+          "text": "Ulaşamıyor, çünkü ulaşmasını istemiyorum. Bu işe burnunu sokma."
+        },
+        {
+          "speaker": "player",
+          "mood": "defensive",
+          "text": "Sakin ol, ben sadece bana söyleneni iletiyorum."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "irritated",
+          "text": "Ben de sana karışmamanı söylüyorum. Hadi yol al."
+        }
+      ],
+      "effects": {
+        "npc_closeness_delta": -3,
+        "unlock_trigger": {
+          "node_id": "act3_pc_spam",
+          "location": "home_pc_messages",
+          "delay_days": 1
+        }
+      },
+      "next": null
+    },
+    "act3_pc_spam": {
+      "act": 3,
+      "location": "home_pc_messages",
+      "time_slot": "night_pc",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Gece eve dönüp bilgisayarı açtığında Mesajlar sekmesinde tanımadığın bir hesaptan art arda 6 yeni mesaj görürsün."
+        },
+        {
+          "speaker": "wife",
+          "mood": "desperate",
+          "text": "[23:12] {player_name}, lütfen mesajı gör."
+        },
+        {
+          "speaker": "wife",
+          "mood": "desperate",
+          "text": "[23:14] Kime yazacağımı bilemedim. Kulübün sayfasından profilini buldum."
+        },
+        {
+          "speaker": "wife",
+          "mood": "crying",
+          "text": "[23:19] Yarın akşam kafenin arka sokağına gelir misin? Yalvarırım, kimse görmeden konuşmamız lazım."
+        }
+      ],
+      "choices": [
+        {
+          "id": "reply_go_alley",
+          "label": "Tamam, yarın akşam kafenin arka sokağında olurum.",
+          "effects": {
+            "unlock_trigger": {
+              "node_id": "act3_cafe_alley",
+              "location": "cafe_back_alley",
+              "delay_days": 1
+            }
+          },
+          "next": "act3_pc_reply_accept"
+        },
+        {
+          "id": "reply_ignore_block",
+          "label": "Kusura bakma, aile meselelerinize karışamam. (Mesajı kapat)",
+          "effects": {
+            "flags_add": [
+              "sq_aldatan_es_ignored_at_pc"
+            ],
+            "schedule_event": {
+              "delay_days": 21,
+              "event_id": "ev_aldatan_es_divorce_news"
+            }
+          },
+          "next": "end_ignored_early"
+        }
+      ]
+    },
+    "act3_pc_reply_accept": {
+      "act": 3,
+      "location": "home_pc_messages",
+      "time_slot": "night_pc",
+      "dialogue": [
+        {
+          "speaker": "wife",
+          "mood": "relieved",
+          "text": "Çok teşekkür ederim. Lütfen kimseye söyleme."
+        }
+      ],
+      "next": null
+    },
+    "act3_cafe_alley": {
+      "act": 3,
+      "location": "cafe_back_alley",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Kafenin arka sokağına girdiğinde loş lambanın altında bekleyen kadını görürsün. Tedirgin şekilde etrafı kolaçan eder."
+        },
+        {
+          "speaker": "wife",
+          "mood": "anxious",
+          "text": "Geldiğin için sağ ol. Burada duralım, caddeden kimse bizi görmesin."
+        },
+        {
+          "speaker": "player",
+          "mood": "cautious",
+          "text": "Ne yapmak istiyorsun bilmiyorum ama açık konuşayım, bu işe dahil olmak istemiyorum."
+        },
+        {
+          "speaker": "wife",
+          "mood": "sad",
+          "text": "{teammate_name} beni aldatıyor ama bunu kanıtlayamıyorum."
+        },
+        {
+          "speaker": "player",
+          "mood": "skeptical",
+          "text": "Nasıl bu kadar eminsin?"
+        },
+        {
+          "speaker": "wife",
+          "mood": "sad",
+          "text": "Her gece eve başka bir kadının parfümüyle, sabaha karşı geliyor. Genelde kulüpte takılırdı, biz de orada tanıştık ama evlenince düzelir sanmıştım. Benim için kulübe gidip kiminle görüştüğüne bakar mısın?"
+        },
+        {
+          "speaker": "player",
+          "mood": "firm",
+          "text": "Bunu asla yapmam. Ben bir futbolcuyum, paparazzi değilim. Ne sen söyledin ne ben duydum."
+        },
+        {
+          "speaker": "wife",
+          "mood": "crying",
+          "text": "Bak evliliğimiz buna bağlı ve ben... hamileyim. Bu çocuk babasız mı büyüsün istiyorsun? İstersen göbek adını bile senin adın koyarız, yeter ki yardım et!"
+        }
+      ],
+      "choices": [
+        {
+          "id": "accept_investigation",
+          "label": "*İç çekerek* Off... Tamam ama en fazla 2 gece. Yarın antrenman var, bu gece gidemem.",
+          "cost_preview": "Gelecek serbest akşamında kulüp ziyareti (Stamina ve Hangover riski)",
+          "effects": {
+            "flags_add": [
+              "sq_aldatan_es_accepted"
+            ],
+            "unlock_trigger": {
+              "node_id": "act4_club_arrival",
+              "location": "nightclub_interior",
+              "delay_days": 1
+            }
+          },
+          "next": "act3_alley_suspicion"
+        },
+        {
+          "id": "refuse_investigation",
+          "label": "Üzgünüm ama bu benim haddim değil. Takım arkadaşıma casusluk yapamam.",
+          "cost_preview": "Görev kapanır (Takım arkadaşının kariyerine uzun vadeli etkisi olur)",
+          "effects": {
+            "flags_add": [
+              "sq_aldatan_es_refused"
+            ],
+            "schedule_event": {
+              "delay_days": 21,
+              "event_id": "ev_aldatan_es_divorce_news"
+            }
+          },
+          "next": "end_refused_alley"
+        }
+      ]
+    },
+    "act3_alley_suspicion": {
+      "act": 3,
+      "location": "cafe_back_alley",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "wife",
+          "mood": "relieved",
+          "text": "Biliyordum yapacağını. Yufka yürekli birisin."
+        },
+        {
+          "speaker": "player",
+          "mood": "tired",
+          "text": "Sadece iki gece. Bir şey bulursam PC'den yazarım, fazlası yok."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Sokağın köşesini dönerken içine bir kurt düşer. 'Neden bu kadar gizli konuştu ki?' diye düşünüp geri bakarsın."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Kadın köşede bekleyen koyu yeşil montlu bir adamın yanına yürüyüp hararetli şekilde bir şeyler anlatmaktadır."
+        },
+        {
+          "speaker": "player",
+          "mood": "suspicious",
+          "text": "Kocasının yanına mı döndü? Yok... {teammate_name} değil o. Kimdi acaba?"
+        }
+      ],
+      "effects": {
+        "flags_add": [
+          "clue_green_jacket_man"
+        ]
+      },
+      "next": null
+    },
+    "act4_club_arrival": {
+      "act": 4,
+      "location": "nightclub_interior",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "İlk müsait akşamda kulübe gidersin. Köşe masada {teammate_name} tek başına oturmuş içkisini yudumluyor. Yanına kimse yaklaşmıyor."
+        },
+        {
+          "speaker": "player",
+          "mood": "thinking",
+          "text": "Saatlerdir kimseyle konuşmadı. Barmenle ya da etraftakilerle sohbet açıp ağzını aramam lazım. Nasıl yaklaşayım?"
+        }
+      ],
+      "choices": [
+        {
+          "id": "club_blend_in_drinks",
+          "label": "Ortama karış, masadakilere ve kendine birer içki söyle.",
+          "cost_preview": "-150 Nakit, -35 Stamina, Ertesi gün Hangover (Akşamdan Kalma) riski",
+          "effects": {
+            "cash_delta": -150,
+            "stamina_delta": -35,
+            "status_effect_add": "Hangover",
+            "flags_add": [
+              "club_extra_gossip"
+            ]
+          },
+          "next": "act4_club_info_drinks"
+        },
+        {
+          "id": "club_stay_sober",
+          "label": "Sade soda al, ayık kalıp etrafı gözlemle.",
+          "cost_preview": "-20 Stamina, Hangover yok",
+          "effects": {
+            "stamina_delta": -20
+          },
+          "next": "act4_club_info_sober"
+        }
+      ]
+    },
+    "act4_club_info_drinks": {
+      "act": 4,
+      "location": "nightclub_interior",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "İki kadeh sonrası yan masadaki kızlarla sohbet açarsın. Yarınki antrenman biraz can yakacak ama dilleri hemen çözülür."
+        },
+        {
+          "speaker": "player",
+          "mood": "casual",
+          "text": "Şu köşedeki adam benim takım arkadaşım. Bir süredir keyifsiz, burada kiminle takılıyor biliyor musunuz?"
+        },
+        {
+          "speaker": "bar_girl",
+          "mood": "amused",
+          "text": "Kimseyle takılmaz ki. Gelir, köşede içer, gece bitince kalkar gider. Ama geçen hafta dışarıda yeşil montlu bir adam bir kıza onu gösteriyordu, ilginçti."
+        },
+        {
+          "speaker": "player",
+          "mood": "alert",
+          "text": "Yeşil montlu bir adam mı? Teşekkürler..."
+        }
+      ],
+      "effects": {
+        "flags_add": [
+          "clue_green_jacket_at_club"
+        ]
+      },
+      "next": "act4_ex_gf_encounter"
+    },
+    "act4_club_info_sober": {
+      "act": 4,
+      "location": "nightclub_interior",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Sodanı yudumlayarak yan masadaki kızlara yaklaşırsın."
+        },
+        {
+          "speaker": "player",
+          "mood": "casual",
+          "text": "Pardon, şu köşedeki adam takım arkadaşım. Bir süredir durumundan şüpheliyiz. Burada kiminle görüşür biliyor musun?"
+        },
+        {
+          "speaker": "bar_girl",
+          "mood": "neutral",
+          "text": "Kimseyle görüşmez. Gelir, sadece içer, sonra gece olunca çıkar gider. Kendi halinde biri."
+        }
+      ],
+      "next": "act4_ex_gf_encounter"
+    },
+    "act4_ex_gf_encounter": {
+      "act": 4,
+      "location": "nightclub_interior",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "{teammate_name}'in masasından kalkıp lavaboya doğru gittiğini görünce barmene yönelirsin. Tam o sırada kenarda duran bir kadın önünü keser."
+        },
+        {
+          "speaker": "ex_girlfriend",
+          "mood": "cautious",
+          "text": "Pardon... Deminden beri {teammate_name}'i sorup duruyorsun. Gazeteci falan mısın?"
+        },
+        {
+          "speaker": "player",
+          "mood": "neutral",
+          "text": "Hayır, takım arkadaşıyım. Son günlerde pek iyi görünmüyor, merak ettim. Sen kimsin?"
+        },
+        {
+          "speaker": "ex_girlfriend",
+          "mood": "guilty",
+          "text": "Eski bir tanıdık diyelim... Eskiden bu kulübün en eğlenceli adamıydı. Şimdi köşede tek başına oturmasını görünce içim acıdı."
+        },
+        {
+          "speaker": "player",
+          "mood": "curious",
+          "text": "Eski bir tanıdık bayağı yakından takip ediyor gibi. Karısı da onun burada biriyle görüştüğünden şüpheleniyor."
+        },
+        {
+          "speaker": "ex_girlfriend",
+          "mood": "surprised",
+          "text": "Ne? Yok öyle bir şey! Bak... biz onunla lisedeyken beraberdik. Yıllar önce büyük bir hata yaptım, onu aldattım ve ayrıldık. Zaten yüzüme bile bakmıyor."
+        },
+        {
+          "speaker": "player",
+          "mood": "suspicious",
+          "text": "Yıllar sonra nereden bildin her akşam tam bu kulüpte oturduğunu?"
+        },
+        {
+          "speaker": "ex_girlfriend",
+          "mood": "confused",
+          "text": "Geçen hafta sosyal medyadan isimsiz bir hesap yazdı. 'Durumu çok kötü, hep bu kulüpte tek başına içiyor, belki seni görünce toparlanır' dedi. Vicdanım sızladı, geldim. Ama selamımı bile zor aldı."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Tam o anda {teammate_name} ikinizin yanına gelir. Yüzü kıpkırmızı ve alaycıdır."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "drunk_angry",
+          "text": "Hımm... Biri burnunu her şeye sokan takım arkadaşım, diğeri de beni aldatıp hayatımı karartan, şimdi param olunca bana yanaşan eski sevgilim. Harika ekip."
+        },
+        {
+          "speaker": "ex_girlfriend",
+          "mood": "defensive",
+          "text": "Arkadaşın karın için burada! Senin onu aldattığını sanıyormuş."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "bitter",
+          "text": "Hah... Sen de onun yeni sevgilisi değilsin herhalde?"
+        },
+        {
+          "speaker": "player",
+          "mood": "shocked",
+          "text": "Nasıl yani? Karının sevgilisi mi var?"
+        },
+        {
+          "speaker": "teammate",
+          "mood": "deadpan",
+          "text": "Telefonunda yakaladım. Genelde aldatılıyorum, alışkanlık oldu."
+        },
+        {
+          "speaker": "player",
+          "mood": "alert",
+          "text": "Bir saniye... Eski sevgilin nereye kayboldu?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Etrafına baktığında kadının kalabalığın içinde kaybolduğunu görürsün. {teammate_name} ise ayakta zor duruyordur."
+        }
+      ],
+      "effects": {
+        "flags_add": [
+          "clue_anonymous_dm_to_ex"
+        ]
+      },
+      "next": "act5_street_walk"
+    },
+    "act5_street_walk": {
+      "act": 5,
+      "location": "town_street_night",
+      "time_slot": "free_night",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "{teammate_name}'in koluna girip kulüpten çıkarırsın. Kasabanın boş sokağında yavaşça yürüyüp bir banka oturursunuz."
+        },
+        {
+          "speaker": "player",
+          "mood": "sympathetic",
+          "text": "Dostum, senin hayatına giren kadınlar gerçekten çok sorunlu."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "dizzy",
+          "text": "Başım çok feci dönüyor..."
+        },
+        {
+          "speaker": "player",
+          "mood": "neutral",
+          "text": "O kadar içersen böyle olur. Gel seni eve bırakayım."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "tired",
+          "text": "Eve gitmem. Annemin yanına gideceğim, şu ilerideki sokak. Yürürüm birazdan."
+        },
+        {
+          "speaker": "player",
+          "mood": "curious",
+          "text": "Bir şeyi anlamadım. Karının telefonunda gördüğün mesajların ekran görüntüsünü alıp kendine niye atmadın? Direkt boşanırdın."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "frustrated",
+          "text": "Avukatımla konuştum. KVKK gereği gizlice aldığım kayıt delil olarak kullanılamazmış, üstüne ben suçlu çıkarmışım."
+        },
+        {
+          "speaker": "player",
+          "mood": "angry",
+          "text": "Lanet olsun böyle kanunlara... Dur bir saniye."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "confused",
+          "text": "Ne oldu?"
+        },
+        {
+          "speaker": "player",
+          "mood": "realization",
+          "text": "Bunların hepsi planlı! Eski sevgiline sosyal medyadan 'hep burada tek başına' diye mesaj atan anonim hesap... Karının geçen gece arka sokakta konuştuğu o yeşil montlu adam... Önce eski sevgilini üstüne salıp seni kulüpte yakalatmaya çalışmışlar!"
+        },
+        {
+          "speaker": "teammate",
+          "mood": "stunned",
+          "text": "Nasıl yani? Ben eski sevgilime yüz vermeyince..."
+        },
+        {
+          "speaker": "player",
+          "mood": "determined",
+          "text": "Beni maşa olarak kulübe yolladı. Tazminat almak için senin kusurlu görünmene ihtiyacı var. Bak, telefonunu gizlice karıştırmak yasa dışı, ama kamuya açık kafede herkesin gözü önünde sevgilisiyle yakalanırsa avukat bile bir şey diyemez."
+        },
+        {
+          "speaker": "player",
+          "mood": "serious",
+          "text": "Şu an kafan güzel. Yarın kafede buluşalım, planı konuşacağız."
+        }
+      ],
+      "effects": {
+        "npc_closeness_delta": 10,
+        "unlock_trigger": {
+          "node_id": "act6_cafe_plan",
+          "location": "cafe_interior",
+          "delay_days": 1
+        }
+      },
+      "next": null
+    },
+    "act6_cafe_plan": {
+      "act": 6,
+      "location": "cafe_interior",
+      "time_slot": "free_day",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Ertesi gün kafede {teammate_name} ile köşe masada oturursunuz."
+        },
+        {
+          "speaker": "player",
+          "mood": "focused",
+          "text": "Plan çok basit. Evdeki bilgisayardan eşine 'kimlerle konuştuğunu buldum, kafeye gel' diye yazdım. Telefon yok, mesajlaşma yok. Sen karşı köşede bekle; ben masadan kalkıp tuvalete geçtiğim an içeri giriyorsun."
+        },
+        {
+          "speaker": "narrator",
+          "text": "[Ekran kısa süreliğine beyazlaşır, konuşma sesleri uğultuya karışır ve zaman ilerler.]"
+        }
+      ],
+      "next": "act6_wife_confrontation"
+    },
+    "act6_wife_confrontation": {
+      "act": 6,
+      "location": "cafe_interior",
+      "time_slot": "free_day",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Bir saat sonra kafede tek başınasın. Kapı açılır ve {wife_name} hızla masana oturur."
+        },
+        {
+          "speaker": "wife",
+          "mood": "eager",
+          "text": "Mesajını görür görmez geldim. Söyle, kulüpte kiminle konuşuyormuş?"
+        },
+        {
+          "speaker": "player",
+          "mood": "cold",
+          "text": "Kocanla boşanırken tüm parayı istiyorsun demek."
+        },
+        {
+          "speaker": "wife",
+          "mood": "defensive",
+          "text": "Ne saçmalıyorsun sen?"
+        },
+        {
+          "speaker": "player",
+          "mood": "confident",
+          "text": "Şaşırmana gerek yok. Eski sevgilisine kulübün adresini atan anonim hesap sizin işinizdi. Kafenin arka sokağında konuştuğun o yeşil montlu adamı da gördüm. Kocan eski sevgilisine yüz vermeyince maşa olarak beni seçtiniz. Bu kumpas mahkemede çıkarsa tek kuruş alamazsın."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Kadının yüzündeki panik yerini soğuk, yorgun bir sessizliğe bırakır."
+        },
+        {
+          "speaker": "wife",
+          "mood": "bitter",
+          "text": "Hamile de değilim. Evet, yalan söyledim. Başka türlü yardım etmezdin. Ama madem her şeyi biliyorsun, neden gidip kocana anlatmak yerine beni buraya çağırdın?"
+        },
+        {
+          "speaker": "wife",
+          "mood": "vulnerable",
+          "text": "Üç yıldır aynı evin içinde hayalet gibiyim {player_name}. Beni hiçbir zaman sevmedi. Aklı hep o eski sevgilisindeydi. İlk kez biri bana yalnız olmadığımı hissettirdi. Yeni bir hayat kurmak için hakkım olanı istedim, hepsi bu."
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_bluff_trap",
+          "label": "[Blöf Yap] Zeki olduğum kadar çıkarıma da bakarım. Parayı bölüşeceksek varım, sevgilini çağır şartları konuşalım.",
+          "cost_preview": "Tuzak planını işlet (Arkadaşını kurtar — Saha İçi Güven tavan yapar)",
+          "next": "act6_branch_bluff"
+        },
+        {
+          "id": "choice_betray_teammate",
+          "label": "[Gerçek İhanet] {teammate_name} zaten bitik. Bana 6.000 nakit ver, kulüpte onu eski sevgilisiyle gördüğüme şahitlik edeyim.",
+          "cost_preview": "+6.000 Nakit, ancak yakalanırsa Team Trust sıfırlanır ve PC'de skandal patlar!",
+          "effects": {
+            "cash_delta": 6000,
+            "npc_closeness_delta": -40,
+            "npc_team_trust_delta": -50,
+            "teammate_season_form_debuff": true,
+            "flags_add": [
+              "sq_aldatan_es_betrayed_teammate"
+            ],
+            "schedule_event": {
+              "delay_days": 14,
+              "event_id": "ev_aldatan_es_social_scandal"
+            }
+          },
+          "next": "act6_branch_betray"
+        },
+        {
+          "id": "choice_honest_walkout",
+          "label": "[Dürüst Çıkış] Ne paranı istiyorum ne bu oyunun parçası olacağım. Her şeyi biliyor, mahkemede ne haliniz varsa görün.",
+          "cost_preview": "Tuzaksız temiz kapanış (Orta seviye ilişki bonusu)",
+          "effects": {
+            "npc_closeness_delta": 12,
+            "npc_team_trust_delta": 12,
+            "flags_add": [
+              "sq_aldatan_es_honest_exit"
+            ]
+          },
+          "next": "act6_branch_honest"
+        }
+      ]
+    },
+    "act6_branch_bluff": {
+      "act": 6,
+      "location": "cafe_interior",
+      "time_slot": "free_day",
+      "dialogue": [
+        {
+          "speaker": "wife",
+          "mood": "calculating",
+          "text": "Blöf yapmadığını nereden bileyim?"
+        },
+        {
+          "speaker": "player",
+          "mood": "smug",
+          "text": "Kocanın avukatına gitmek yerine karşında oturuyorum. Ayrıca kumpası kanıtlayacak barmen ve eski sevgili şahitliği elimde. Payımı verirsen susarım, yoksa yarın sabah dosyayı veririm. Karar senin."
+        },
+        {
+          "speaker": "wife",
+          "mood": "relieved",
+          "text": "Akıllı adamsın... Hem zeki hem mantıklı. Bu adamın ikimize de yetecek parası var. Merak etme, {lover_name} zaten köşede bekliyordu. Gelip el sıkışalım."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Kadın camdan işaret verir. Koyu yeşil montlu adam kafeye girip yanına oturur. İkisi de rahatlamış görünmektedir."
+        },
+        {
+          "speaker": "player",
+          "mood": "casual",
+          "text": "Hoş geldin. Başlamadan önce bir lavaboya uğrayayım, hemen geliyorum."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Masadan kalkıp arka koridora yürürsün. Kapının kenarında bekleyen {teammate_name}'in yanına geçersin."
+        },
+        {
+          "speaker": "player",
+          "mood": "serious",
+          "text": "Ben kalktım. Rahatlayıp sarmaş dolaş olmuşlardır. Şimdi çıkıp herkesin içinde fotoğrafı çekebilirsin."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "melancholic",
+          "text": "Bunu ummalı mıyım, ummamalı mıyım... inan bilmiyorum."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Salona döndüğünüzde kadın ile yeşil montlu adam masada el ele, baş başa durmaktadır. Deklanşör sesiyle kadın başını kaldırır ve donakalır."
+        }
+      ],
+      "effects": {
+        "npc_closeness_delta": 25,
+        "single_match_teammate_morale_debuff": true,
+        "flags_add": [
+          "sq_aldatan_es_saved_teammate"
+        ],
+        "unlock_trigger": {
+          "node_id": "act7_locker_room_saved",
+          "location": "locker_room_pre_match",
+          "delay_days": 2
+        },
+        "schedule_event": {
+          "delay_days": 7,
+          "event_id": "ev_aldatan_es_trust_surge"
+        }
+      },
+      "next": null
+    },
+    "act6_branch_betray": {
+      "act": 6,
+      "location": "cafe_interior",
+      "time_slot": "free_day",
+      "dialogue": [
+        {
+          "speaker": "wife",
+          "mood": "surprised",
+          "text": "Ciddi misin? Altı bin nakit ve kulüp şahitliği..."
+        },
+        {
+          "speaker": "player",
+          "mood": "cold",
+          "text": "Ciddiyim. Ama dışarıda {teammate_name} bekliyor. Şimdi kalkıp tuvalete gitmeden arka kapıdan çık, sevgilin içeri girmesin. Parayı akşam zarfla bırakırsın."
+        },
+        {
+          "speaker": "wife",
+          "mood": "grateful_cold",
+          "text": "Anlaştık. Futbol dünyasında herkes kendi gemisini kurtarıyor demek."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Kadın sessizce arka kapıdan çıkar. On dakika sonra içeri giren {teammate_name} boş masayı ve senin sakin yüzünü görünce bir terslik olduğunu anlar."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "cold",
+          "text": "Gitmiş... Ve sen peşinden bile bakmamışsın. Anlaşıldı {player_name}."
+        }
+      ],
+      "effects": {
+        "unlock_trigger": {
+          "node_id": "act7_locker_room_betrayed",
+          "location": "locker_room_pre_match",
+          "delay_days": 2
+        }
+      },
+      "next": null
+    },
+    "act6_branch_honest": {
+      "act": 6,
+      "location": "cafe_interior",
+      "time_slot": "free_day",
+      "dialogue": [
+        {
+          "speaker": "wife",
+          "mood": "resigned",
+          "text": "Belki de en iyisi bu... Yoruldum zaten saklanmaktan."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Masadan kalkıp çıkarsın. Dışarıda bekleyen {teammate_name}'e her şeyi olduğu gibi anlatırsın. Boşanma davası uzayacak ama en azından kumpastan kurtulmuştur."
+        }
+      ],
+      "effects": {
+        "unlock_trigger": {
+          "node_id": "act7_locker_room_honest",
+          "location": "locker_room_pre_match",
+          "delay_days": 2
+        }
+      },
+      "next": null
+    },
+    "act7_locker_room_saved": {
+      "act": 7,
+      "location": "locker_room_pre_match",
+      "time_slot": "pre_match",
+      "is_ending": true,
+      "ending_id": "saved_teammate",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Maç öncesi soyunma odasında kramponlarını bağlarken {teammate_name} yanına oturur. Gözleri yorgun ama zihni durulmuştur."
+        },
+        {
+          "speaker": "player",
+          "mood": "quiet",
+          "text": "Ne yaptın... Boşadın mı?"
+        },
+        {
+          "speaker": "teammate",
+          "mood": "melancholic",
+          "text": "Dilekçeyi verdim. Ama sanırım... o haklıydı."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Hakemin düdüğü koridordan duyulur. İkiniz de sessizce sahaya çıkarsınız."
+        }
+      ],
+      "effects": {
+        "transition_to_match": true,
+        "match_modifiers": {
+          "teammate_morale_override": "low_single_match"
+        }
+      },
+      "next": null
+    },
+    "act7_locker_room_betrayed": {
+      "act": 7,
+      "location": "locker_room_pre_match",
+      "time_slot": "pre_match",
+      "is_ending": true,
+      "ending_id": "betrayed_teammate",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Soyunma odasında {teammate_name} yüzüne bile bakmadan formasını giyer. Cebinde ağır bir 6.000 nakit var ama odadaki hava buz gibi."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "cold",
+          "text": "Sahada benden pas bekleme."
+        }
+      ],
+      "effects": {
+        "transition_to_match": true,
+        "match_modifiers": {
+          "teammate_pass_bias_override": 0.1
+        }
+      },
+      "next": null
+    },
+    "act7_locker_room_honest": {
+      "act": 7,
+      "location": "locker_room_pre_match",
+      "time_slot": "pre_match",
+      "is_ending": true,
+      "ending_id": "honest_resolution",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Soyunma odasında {teammate_name} omzuna hafifçe vurur."
+        },
+        {
+          "speaker": "teammate",
+          "mood": "tired_grateful",
+          "text": "Avukatlar uğraşacak biraz ama en azından kimin ne olduğunu bildim. Sağ ol dostum. Haydi sahaya."
+        }
+      ],
+      "effects": {
+        "transition_to_match": true
+      },
+      "next": null
+    },
+    "end_ignored_early": {
+      "act": 3,
+      "location": "home_pc_messages",
+      "time_slot": "night_pc",
+      "is_ending": true,
+      "ending_id": "ignored_at_pc",
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text": "Mesaj penceresini kapatırsın. Saha dışı drama senin işin değil."
+        }
+      ],
+      "next": null
+    },
+    "end_refused_alley": {
+      "act": 3,
+      "location": "cafe_back_alley",
+      "time_slot": "free_night",
+      "is_ending": true,
+      "ending_id": "refused_at_alley",
+      "dialogue": [
+        {
+          "speaker": "wife",
+          "mood": "cold",
+          "text": "Anlaşıldı. Erkekler hep birbirini kollar zaten."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Arkanı dönüp sokağı terk edersin. Konu senin için kapanmıştır."
+        }
+      ],
+      "next": null
+    }
+  },
+  "scheduled_events": {
+    "ev_aldatan_es_trust_surge": {
+      "delivery_channel": "home_pc_messages",
+      "sender": "{teammate_name}",
+      "title": "Sağ ol kardeşim",
+      "text": "Geçen hafta sahada kafam hiç yerinde değildi, kusura bakma. Yavaş yavaş toparlıyorum. Bundan sonra saha içinde gözün kapalı koş, top sende.",
+      "effects": {
+        "npc_team_trust_delta": 35,
+        "remove_modifier": "teammate_morale_override"
+      }
+    },
+    "ev_aldatan_es_divorce_news": {
+      "delivery_channel": "home_pc_news",
+      "headline": "{teammate_name} Cephesinde Çalkantılı Boşanma!",
+      "text": "Kulübün önemli isimlerinden {teammate_name}'in yüksek tazminatlı boşanma davası sonrası antrenmanlarda oldukça keyifsiz olduğu ve form düşüşü yaşadığı konuşuluyor.",
+      "effects": {
+        "npc_closeness_delta": -10,
+        "teammate_season_form_debuff": true
+      }
+    },
+    "ev_aldatan_es_social_scandal": {
+      "delivery_channel": "home_pc_social_media",
+      "author": "@KasabaFutbolDedikodu",
+      "trending_tag": "#SoyunmaOdasındaİhanet",
+      "text": "ŞOK İDDİA! {player_name}, takım arkadaşı {teammate_name}'in boşanma sürecindeki eski eşiyle kafede buluşup zarf alırken görüntülendi! Soyunma odasında ipler tamamen koptu!",
+      "effects": {
+        "npc_team_trust_set": 0,
+        "locker_room_morale_delta": -25,
+        "media_reputation_delta": -20,
+        "fan_reputation_delta": -15
+      }
+    }
+  }
+}

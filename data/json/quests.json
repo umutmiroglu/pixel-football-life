@@ -1,0 +1,174 @@
+{
+  "quests": [
+    {
+      "id": "dark_sponsor_offer",
+      "title": "Karanlik Teklif",
+      "trigger_tags": ["menajer", "para_duskunu"],
+      "description": "Para duskunu menajerin kapali kapilar ardinda supheli bir nakit anlasma oneriyor.",
+      "start": "intro",
+      "nodes": {
+        "intro": {
+          "speaker_mode": "npc",
+          "line": "Dinle evlat, bu amator ligde kazandigin uc kurusla bir yere varamazsin. Yerel bir bahis sirketinin sahibi bana ulasti. Hafta sonu sadece macin ilk 20 dakikasinda sut cekmezsen cebine aninda 5.000 TL nakit girecek. Kimse anlamaz!",
+          "choices": [
+            {
+              "text": "Kabul et: 'Paraya ihtiyacim var, kimse bilmesin.' (+5000 TL, -15 Kaptan Guveni)",
+              "to": "accepted",
+              "effects": { "money": 5000, "npc_affection": 12, "team_pitch_trust": -15, "coach_trust": -10, "flag": "took_shady_deal" }
+            },
+            {
+              "text": "Sertce reddet: 'Futbola ihanet etmem!' (-10 Menajer, +12 Kaptan Guveni)",
+              "to": "rejected",
+              "effects": { "npc_affection": -12, "team_pitch_trust": 12, "coach_trust": 6, "flag": "refused_shady_deal" }
+            },
+            {
+              "text": "Zaman iste ve onu tehdit et: 'Bunu baskana soylersem ne olur?'",
+              "to": "threatened",
+              "effects": { "npc_affection": -22, "npc_pitch_trust": -15, "coach_trust": 10 }
+            }
+          ]
+        },
+        "accepted": {
+          "speaker_mode": "npc",
+          "line": "Iste akilli adam hali baska! Zarf aksam evinin posta kutusunda olacak. Ama dikkat et, soyunma odasinda dedikodular cabuk yayilir...",
+          "end": true
+        },
+        "rejected": {
+          "speaker_mode": "npc",
+          "line": "Tch... Romantik kahraman olmaya devam et o zaman. Bakalim o onurunla yeni krampon alabilecek misin!",
+          "end": true
+        },
+        "threatened": {
+          "speaker_mode": "npc",
+          "line": "Sakin ol, sadece bir sakaydi! Agzini sikica kapat, yoksa bu ligde sana kulup bulmam cok zorlasir...",
+          "end": true
+        }
+      }
+    },
+    {
+      "id": "locker_room_sabotage",
+      "title": "Soyunma Odasi Kumpasi",
+      "trigger_tags": ["takim_arkadasi", "makyavelist"],
+      "description": "Makyavelist takim arkadasin, yukselisinden rahatsiz ve idmanda seni hocanin gozunden dusurmeye calisiyor.",
+      "start": "confront",
+      "nodes": {
+        "confront": {
+          "speaker_mode": "npc",
+          "line": "Hocayla az once konustum. Senin savunmaya hic yardim etmedigini, takim oyununu bozdugunu soyledim. Kusura bakma dostum, ilk 11'de sadece bir kisiye yer var.",
+          "choices": [
+            {
+              "text": "Sogukkanli kal: 'Konusmayi sahada yapariz.' (+10 Takim Guveni, +5 Hoca)",
+              "to": "cool_reply",
+              "effects": { "npc_affection": -5, "npc_pitch_trust": 8, "team_pitch_trust": 8, "coach_trust": 5 }
+            },
+            {
+              "text": "Ustune yuru ve bagir! (-15 Hoca, -10 Takim, +Agresif itibar)",
+              "to": "fight_reply",
+              "effects": { "npc_affection": -20, "npc_pitch_trust": -12, "coach_trust": -14 }
+            },
+            {
+              "text": "Ortaklik kur: 'Beraber oynarsak ikimiz de buyuk lige gideriz.' (+Samimiyet & Guven)",
+              "to": "ally_reply",
+              "effects": { "npc_affection": 14, "npc_pitch_trust": 12 }
+            }
+          ]
+        },
+        "cool_reply": {
+          "speaker_mode": "npc",
+          "line": "Gorecegiz bakalim... Hafta sonu ayagina top geldiginde ne kadar sogukkanli kalabileceksin.",
+          "end": true
+        },
+        "fight_reply": {
+          "speaker_mode": "npc",
+          "line": "Hah! Iste tam da hocanin gormesini istedigim tepki! Kaptan bizi ayirmadan sesini kis bence.",
+          "end": true
+        },
+        "ally_reply": {
+          "speaker_mode": "npc",
+          "line": "Hmm... Aslinda mantikli. Sen bana ara pasi cikarsan, ben de sana bosluk acarim. Anlastik, bu seferlik ateskes.",
+          "end": true
+        }
+      }
+    },
+    {
+      "id": "midnight_club_invite",
+      "title": "Gece Yarisi VIP Daveti",
+      "trigger_tags": ["gece_hayati"],
+      "description": "Gece hayatina duskun arkadasin seni mactan onceki gece gizli bir VIP partiye cagiriyor.",
+      "start": "invite",
+      "nodes": {
+        "invite": {
+          "speaker_mode": "npc",
+          "line": "Bu gece sehirdeki VIP kulupte loca ayirttim! Herkes orada olacak, biraz stres atmazsak cildiracagiz. Hadi kalk hazirlan, kimse gormez!",
+          "choices": [
+            {
+              "text": "Partiye git! (+18 Samimiyet, -35 Stamina / HANGOVER!, -10 Hoca)",
+              "to": "went_club",
+              "effects": { "npc_affection": 18, "stamina_set": 62, "status_add": "hangover", "coach_trust": -10, "money": -400 }
+            },
+            {
+              "text": "Sadece 1 saat ugra, erken don (+6 Samimiyet, -12 Stamina)",
+              "to": "short_visit",
+              "effects": { "npc_affection": 6, "stamina_delta": -12, "money": -150 }
+            },
+            {
+              "text": "Reddet: 'Yarin mac var, evde dinlenecegim.' (-6 Samimiyet, +8 Hoca, +5 Takim Guveni)",
+              "to": "stayed_home",
+              "effects": { "npc_affection": -6, "coach_trust": 8, "team_pitch_trust": 5 }
+            }
+          ]
+        },
+        "went_club": {
+          "speaker_mode": "npc",
+          "line": "EFSANE GECEYDI! Sabaha karsi eve donerken basin biraz agriyor ama tum kasaba seni konusuyor! [Aksamdan Kalma: Hangover aktif!]",
+          "end": true
+        },
+        "short_visit": {
+          "speaker_mode": "npc",
+          "line": "Biraz erken kactin ama yine de yuzunu gosterdigin icin eyvallah dostum!",
+          "end": true
+        },
+        "stayed_home": {
+          "speaker_mode": "npc",
+          "line": "Bazen fazla profesyonelsin... Iyi geceler, yarin sahada ucarsin artik!",
+          "end": true
+        }
+      }
+    },
+    {
+      "id": "press_leak_interview",
+      "title": "Basin Sizintisi",
+      "trigger_tags": ["gazeteci"],
+      "description": "Yerel spor gazetecisi teknik direktorun taktikleri hakkinda carpici bir demec istiyor.",
+      "start": "ask",
+      "nodes": {
+        "ask": {
+          "speaker_mode": "npc",
+          "line": "Kisa bir roportaj lutfen! Taraftarlar hocanin taktiginin senin yetenegini kisitladigini konusuyor. Yarin mansete ne yazalim?",
+          "choices": [
+            {
+              "text": "Hocayi savun: 'Hocamizin sistemine sonuna kadar guveniyorum.' (+12 Hoca, +5 Takim)",
+              "to": "defend_coach",
+              "effects": { "coach_trust": 12, "team_pitch_trust": 5, "npc_affection": -4 }
+            },
+            {
+              "text": "Ego patlat: 'Bana daha fazla ozgurluk verilirse bu ligi kirarim!' (-14 Hoca, +14 Gazeteci)",
+              "to": "ego_quote",
+              "effects": { "coach_trust": -14, "npc_affection": 14, "team_pitch_trust": -4 }
+            }
+          ]
+        },
+        "defend_coach": {
+          "speaker_mode": "npc",
+          "line": "Cok diplomatik... Yarin manset biraz sakin olacak ama kulup binasinda bu sozlerin alkis toplayacaktir.",
+          "end": true
+        },
+        "ego_quote": {
+          "speaker_mode": "npc",
+          "line": "MUTHIS MANSET! Sosyal medya yarin sabah bununla calkalanacak, hoca biraz kizabilir ama harika reklam oldu!",
+          "end": true
+        }
+      }
+    }
+  ]
+}

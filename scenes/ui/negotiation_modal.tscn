@@ -1,0 +1,302 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/negotiation_modal.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main"]
+bg_color = Color(0.05, 0.08, 0.13, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.82, 0.3, 0.92)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sub"]
+bg_color = Color(0.09, 0.12, 0.18, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.38, 0.52, 0.7)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+
+[node name="NegotiationModal" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_main")
+script = ExtResource("1_script")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TopBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="VBox/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.35, 1)
+theme_override_font_sizes/font_size = 7
+text = "PAZARLIK MASASI"
+
+[node name="ModeRenewBtn" type="Button" parent="VBox/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Kulup Yenileme"
+
+[node name="ModeTransferBtn" type="Button" parent="VBox/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "Yurt Disi Transfer!"
+
+[node name="Spacer" type="Control" parent="VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseBtn" type="Button" parent="VBox/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Ayril [X]"
+
+[node name="BodySplit" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="LeftPanel" type="PanelContainer" parent="VBox/BodySplit"]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sub")
+
+[node name="LeftVBox" type="VBoxContainer" parent="VBox/BodySplit/LeftPanel"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="ProfileRow" type="HBoxContainer" parent="VBox/BodySplit/LeftPanel/LeftVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PortraitBox" type="ColorRect" parent="VBox/BodySplit/LeftPanel/LeftVBox/ProfileRow"]
+custom_minimum_size = Vector2(30, 36)
+layout_mode = 2
+color = Color(0.12, 0.16, 0.24, 1)
+
+[node name="NegPortraitHolder" type="Node2D" parent="VBox/BodySplit/LeftPanel/LeftVBox/ProfileRow/PortraitBox"]
+unique_name_in_owner = true
+position = Vector2(15, 25)
+
+[node name="MetaVBox" type="VBoxContainer" parent="VBox/BodySplit/LeftPanel/LeftVBox/ProfileRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="NegNameLabel" type="Label" parent="VBox/BodySplit/LeftPanel/LeftVBox/ProfileRow/MetaVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Baskan"
+autowrap_mode = 2
+
+[node name="NegClubLabel" type="Label" parent="VBox/BodySplit/LeftPanel/LeftVBox/ProfileRow/MetaVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "Kasaba Spor (TR)"
+autowrap_mode = 2
+
+[node name="NegTagsLabel" type="Label" parent="VBox/BodySplit/LeftPanel/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.96, 1)
+theme_override_font_sizes/font_size = 5
+text = "[Agresif] [Para Duskunu]"
+autowrap_mode = 2
+
+[node name="PatienceRow" type="HBoxContainer" parent="VBox/BodySplit/LeftPanel/LeftVBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="PLbl" type="Label" parent="VBox/BodySplit/LeftPanel/LeftVBox/PatienceRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.35, 1)
+theme_override_font_sizes/font_size = 5
+text = "Sabir:"
+
+[node name="PatienceBar" type="ProgressBar" parent="VBox/BodySplit/LeftPanel/LeftVBox/PatienceRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="PatienceVal" type="Label" parent="VBox/BodySplit/LeftPanel/LeftVBox/PatienceRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "100%"
+horizontal_alignment = 2
+
+[node name="NegSpeechLabel" type="Label" parent="VBox/BodySplit/LeftPanel/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 5
+text = "Teklifini dinliyorum..."
+autowrap_mode = 3
+
+[node name="RightPanel" type="PanelContainer" parent="VBox/BodySplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_sub")
+
+[node name="RightVBox" type="VBoxContainer" parent="VBox/BodySplit/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="OfferHeader" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.94, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "SOZLESME SARTLARIN"
+horizontal_alignment = 1
+
+[node name="WageRow" type="HBoxContainer" parent="VBox/BodySplit/RightPanel/RightVBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Lbl" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox/WageRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Haftalik Maas:"
+
+[node name="WageMinusBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox/WageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "-50"
+
+[node name="WageValLabel" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox/WageRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.42, 1)
+theme_override_font_sizes/font_size = 6
+text = "500 TL"
+horizontal_alignment = 1
+
+[node name="WagePlusBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox/WageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "+50"
+
+[node name="BonusRow" type="HBoxContainer" parent="VBox/BodySplit/RightPanel/RightVBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Lbl" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox/BonusRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Gol Primi:"
+
+[node name="BonusMinusBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox/BonusRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "-50"
+
+[node name="BonusValLabel" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox/BonusRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.42, 1)
+theme_override_font_sizes/font_size = 6
+text = "250 TL"
+horizontal_alignment = 1
+
+[node name="BonusPlusBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox/BonusRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "+50"
+
+[node name="YearsRow" type="HBoxContainer" parent="VBox/BodySplit/RightPanel/RightVBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Lbl" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox/YearsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Sozlesme Suresi:"
+
+[node name="YearsMinusBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox/YearsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "-"
+
+[node name="YearsValLabel" type="Label" parent="VBox/BodySplit/RightPanel/RightVBox/YearsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 6
+text = "2 Sezon"
+horizontal_alignment = 1
+
+[node name="YearsPlusBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox/YearsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "+"
+
+[node name="StarterCheck" type="CheckBox" parent="VBox/BodySplit/RightPanel/RightVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Ilk 11 Garantisi Iste"
+
+[node name="Spacer2" type="Control" parent="VBox/BodySplit/RightPanel/RightVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubmitOfferBtn" type="Button" parent="VBox/BodySplit/RightPanel/RightVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 1, 0.58, 1)
+theme_override_font_sizes/font_size = 7
+text = "TEKLIFI MASAYA KOY"

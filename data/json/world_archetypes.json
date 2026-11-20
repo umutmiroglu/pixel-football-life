@@ -1,0 +1,60 @@
+{
+  "archetypes": {
+    "TR": {
+      "city_type": "Anadolu Kasabasi",
+      "archetype_tier": "town",
+      "tint": [1.0, 0.99, 0.95, 1.0],
+      "weather": "clear",
+      "square_label": "KASABA MEYDANI",
+      "vibe_note": "Sicak esnaf sohbeti ve samimi amator tribunu."
+    },
+    "EN": {
+      "city_type": "Ingiliz Sanayi Futbol Sehri",
+      "archetype_tier": "city",
+      "tint": [0.82, 0.88, 0.96, 1.0],
+      "weather": "rain",
+      "square_label": "HIGH STREET PLAZA",
+      "vibe_note": "Yagmurlu aksamlar, tugla pub'lar ve tutku dolu tribuner."
+    },
+    "ES": {
+      "city_type": "Akdeniz Sahil Kenti",
+      "archetype_tier": "city",
+      "tint": [1.06, 0.98, 0.88, 1.0],
+      "weather": "sun_dust",
+      "square_label": "PLAZA DEL SOL",
+      "vibe_note": "Altin gun isigi, teknik pas oyunu ve sicak aksamlar."
+    },
+    "IT": {
+      "city_type": "Italyan Tarihi Meydani",
+      "archetype_tier": "town",
+      "tint": [1.04, 0.95, 0.9, 1.0],
+      "weather": "clear",
+      "square_label": "PIAZZA CALCIO",
+      "vibe_note": "Espresso kokulu tas sokaklar ve taktik tutkunu taraftar."
+    },
+    "DE": {
+      "city_type": "Alman Disiplin Kenti",
+      "archetype_tier": "city",
+      "tint": [0.9, 0.95, 0.98, 1.0],
+      "weather": "clear",
+      "square_label": "STADTPLATZ",
+      "vibe_note": "Saat gibi isleyen tesisler ve tam kapasite stadyumlar."
+    },
+    "BR": {
+      "city_type": "Guney Amerika Karnaval Kenti",
+      "archetype_tier": "town",
+      "tint": [1.05, 1.02, 0.86, 1.0],
+      "weather": "confetti",
+      "square_label": "PRACA DA BOLA",
+      "vibe_note": "Sokaklarda samba ritmi ve calim seven coskulu halk."
+    },
+    "FR": {
+      "city_type": "Fransiz Bulvar Sehri",
+      "archetype_tier": "city",
+      "tint": [0.95, 0.94, 1.02, 1.0],
+      "weather": "clear",
+      "square_label": "PLACE DU STADE",
+      "vibe_note": "Zarif kafeler, hizli kanat oyunculari ve keskin basin."
+    }
+  }
+}
